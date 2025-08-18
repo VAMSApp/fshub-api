@@ -1,3 +1,5 @@
+import { AxiosInstance } from 'axios';
+
 /**
  * FSHub API Types and type= s
  */
@@ -54,6 +56,10 @@ export type FSHubResponse<T> = {
 export type FSHubError = {
   message: string
   code: number
+  error?: boolean
+  details?: {
+    pilot: number
+  }
 }
 
 export type Flight = {
@@ -85,6 +91,7 @@ export type Airline = {
   handles: Handles
   links: Link[]
 }
+
 export type Owner = {
   id: number
   name: string
@@ -166,9 +173,63 @@ export type Airport = {
   wind: Wind
 }
 
-export type FSHubApiInterface = {
-  getCurrentPilot: () => Promise<Pilot>
-  getAllPilots: () => Promise<Pilot[]>
-  getPilot: (id: number) => Promise<Pilot>
-  getPilotLatestFlight: (id: number) => Promise<Flight>
+export type PilotStats = {
+  id: number
+  all_time: PilotStat
+  month: PilotStat
+  links: Link[]
+}
+
+export type AirlineStats = {
+  id: number
+  total_pilots: number
+  all_time: PilotStat
+  month: PilotStat
+  links: Link[]
+}
+
+export type PilotStat = {
+  total_flights: number
+  total_hours: number
+  total_distance: number
+  average_landing: number
+}
+
+export type Screenshot = {
+  id: number
+  name: string
+  desc: any
+  urls: Urls
+  created_at: string
+  links: Link[]
+}
+
+export type Urls = {
+  fullsize: string
+  thumbnail: string
+}
+
+export type FSHubApi = {
+  axios: AxiosInstance
+  Pilot_getCurrent: () => Promise<CurrentPilot>
+  Pilot_getAll: () => Promise<Pilot[]>
+  Pilot_get: (id: number) => Promise<Pilot>
+  Pilot_getLatestFlight: (id: number) => Promise<Flight>
+  Pilot_getAllFlights: (id: number) => Promise<Flight[]>
+  Pilot_getAllAirlines: (id: number) => Promise<Airline[]>
+  Pilot_getStats: (id: number) => Promise<PilotStats>
+  Pilot_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<Flight[]>
+  Pilot_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<Flight[]>
+  Pilot_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<Flight[]>
+  Pilot_getAllScreenshots: (id: number) => Promise<Screenshot[]>
+  Airline_getAll: () => Promise<Airline[]>
+  Airline_get: (id: number) => Promise<Airline>
+  Airline_getPilots: (id: number) => Promise<Pilot[]>
+  Airline_getPilotStats: (id: number, pilotId: number) => Promise<PilotStats>
+  Airline_getFlights: (id: number) => Promise<Flight[]>
+  Airline_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<Flight[]>
+  Airline_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<Flight[]>
+  Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<Flight[]>
+  Airline_getAllScreenshots: (id: number) => Promise<Screenshot[]>
+  Airline_getStats: (id: number) => Promise<AirlineStats>
 }
