@@ -2,6 +2,8 @@ import axios, { AxiosInstance } from 'axios';
 import type{ Config, FSHubApi } from './types';
 import { Api } from '@/api';
 
+export * from './types';
+
 export default class FSHubApiClass implements FSHubApi {
     private readonly config: Config;
     public readonly axios: AxiosInstance;

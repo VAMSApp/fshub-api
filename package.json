@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "TypeScript HTTP API wrapper library for FSHub REST API",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "src/types/index.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./src/types/index.ts"
     }
   },
   "scripts": {

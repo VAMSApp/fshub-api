@@ -1,197 +1,207 @@
+import { AxiosInstance } from 'axios';
 /**
- * FSHub API Types and Interfaces
+ * FSHub API Types and type= s
  */
-export interface FSHubConfig {
+export type Config = {
     baseURL?: string;
     apiKey?: string;
     timeout?: number;
     headers?: Record<string, string>;
-}
-export interface FSHubResponse<T = any> {
+};
+export type CurrentPilot = Pilot & {
+    discord_id?: number;
+};
+export type Pilot = {
+    id: number;
+    name: string;
+    base: string;
+    locale: string;
+    gps: Gps;
+    is_online: boolean;
+    online_at: string;
+    bio?: string;
+    handles?: Handles;
+    timezone?: string;
+    country?: string;
+    created_at?: string;
+    links?: Link[];
+};
+export type Handles = {
+    facebook: any;
+    twitter: string;
+    website: any;
+    vatsim: string;
+    ivao: string;
+};
+export type Link = {
+    rel: string;
+    uri: string;
+};
+export type Gps = {
+    lat: number;
+    lng: number;
+};
+export type FSHubResponse<T> = {
     data: T;
-    status: number;
-    statusText: string;
-    headers: Record<string, string>;
-}
-export interface FSHubError {
+};
+export type FSHubError = {
     message: string;
-    status?: number;
-    code?: string;
-    details?: any;
-}
-export interface PaginatedResponse<T> {
-    data: T[];
-    pagination: {
-        page: number;
-        limit: number;
-        total: number;
-        totalPages: number;
+    code: number;
+    error?: boolean;
+    details?: {
+        pilot: number;
     };
-}
-export interface ApiResponse<T> {
-    success: boolean;
-    data: T;
-    message?: string;
-    errors?: string[];
-}
-export interface User {
-    id: string;
-    username: string;
-    email: string;
-    firstName?: string;
-    lastName?: string;
-    avatar?: string;
-    createdAt: string;
-    updatedAt: string;
-    isActive: boolean;
-    role: UserRole;
-}
-export declare enum UserRole {
-    USER = "user",
-    ADMIN = "admin",
-    MODERATOR = "moderator"
-}
-export interface Flight {
-    id: string;
-    callsign: string;
+};
+export type Flight = {
+    id: number;
+    user: User;
+    airline: Airline;
+    schedule_status: any;
     aircraft: Aircraft;
+    plan: any;
+    fuel_used: number;
+    landing_rate: number;
+    distance: Distance;
+    average: Average;
+    max: Max;
+    time: number;
+    tags: any[];
+    flags: any[];
+    points: number;
     departure: Airport;
     arrival: Airport;
-    status: FlightStatus;
-    pilot: User;
-    createdAt: string;
-    updatedAt: string;
-    departureTime?: string;
-    arrivalTime?: string;
-    route?: string;
-    altitude?: number;
-    speed?: number;
-    distance?: number;
-}
-export declare enum FlightStatus {
-    SCHEDULED = "scheduled",
-    BOARDING = "boarding",
-    DEPARTED = "departed",
-    EN_ROUTE = "en_route",
-    APPROACHING = "approaching",
-    LANDED = "landed",
-    CANCELLED = "cancelled",
-    DELAYED = "delayed"
-}
-export interface Aircraft {
-    id: string;
-    registration: string;
-    type: string;
-    model: string;
-    manufacturer: string;
-    year?: number;
-    capacity?: number;
-    maxRange?: number;
-    maxSpeed?: number;
-    fuelCapacity?: number;
-    image?: string;
-}
-export interface Airport {
-    id: string;
-    icao: string;
-    iata?: string;
+    links: Link[];
+};
+export type Airline = {
+    id: number;
     name: string;
-    city: string;
-    country: string;
-    latitude: number;
-    longitude: number;
-    elevation?: number;
+    abbr: string;
+    owner: Owner;
+    handles: Handles;
+    links: Link[];
+};
+export type Owner = {
+    id: number;
+    name: string;
+    bio: any;
+    handles: Handles;
+    base: string;
+    locale: string;
+    gps: Gps;
     timezone: string;
-    type: AirportType;
-}
-export declare enum AirportType {
-    SMALL = "small",
-    MEDIUM = "medium",
-    LARGE = "large",
-    INTERNATIONAL = "international"
-}
-export interface FlightQueryParams {
-    page?: number;
-    limit?: number;
-    status?: FlightStatus;
-    pilotId?: string;
-    aircraftId?: string;
-    departureIcao?: string;
-    arrivalIcao?: string;
-    dateFrom?: string;
-    dateTo?: string;
-    sortBy?: string;
-    sortOrder?: 'asc' | 'desc';
-}
-export interface AircraftQueryParams {
-    page?: number;
-    limit?: number;
-    manufacturer?: string;
-    type?: string;
-    registration?: string;
-    sortBy?: string;
-    sortOrder?: 'asc' | 'desc';
-}
-export interface AirportQueryParams {
-    page?: number;
-    limit?: number;
-    country?: string;
-    city?: string;
-    icao?: string;
-    iata?: string;
-    type?: AirportType;
-    sortBy?: string;
-    sortOrder?: 'asc' | 'desc';
-}
-export interface UserQueryParams {
-    page?: number;
-    limit?: number;
-    role?: UserRole;
-    isActive?: boolean;
-    search?: string;
-    sortBy?: string;
-    sortOrder?: 'asc' | 'desc';
-}
-export interface LoginCredentials {
-    email: string;
-    password: string;
-}
-export interface RegisterData {
-    username: string;
-    email: string;
-    password: string;
-    firstName?: string;
-    lastName?: string;
-}
-export interface AuthResponse {
-    user: User;
-    token: string;
-    refreshToken?: string;
-    expiresAt: string;
-}
-export interface FlightStats {
-    totalFlights: number;
-    totalDistance: number;
-    totalHours: number;
-    averageFlightTime: number;
-    mostFrequentAircraft: Aircraft;
-    mostFrequentRoute: {
-        departure: string;
-        arrival: string;
-        count: number;
-    };
-}
-export interface UserStats {
-    userId: string;
-    totalFlights: number;
-    totalDistance: number;
-    totalHours: number;
-    averageFlightTime: number;
-    favoriteAircraft: Aircraft;
-    favoriteRoute: {
-        departure: string;
-        arrival: string;
-        count: number;
-    };
-}
+    country: string;
+    is_online: boolean;
+    online_at: string;
+    created_at: string;
+    links: Link[];
+};
+export type User = {
+    id: number;
+    name: string;
+};
+export type Aircraft = {
+    icao: string;
+    icao_name: string;
+    name: string;
+    type: string;
+    user_conf: UserConf;
+};
+export type UserConf = {
+    tail: string;
+    icao: string;
+};
+export type Distance = {
+    nm: number;
+    km: number;
+};
+export type Average = {
+    spd: number;
+};
+export type Max = {
+    alt: number;
+    spd: number;
+};
+export type Geo = {
+    lat: number;
+    lng: number;
+};
+export type Hdg = {
+    mag: number;
+    true: number;
+};
+export type Spd = {
+    tas: number;
+};
+export type Wind = {
+    spd: number;
+    dir: number;
+};
+export type Airport = {
+    icao: string;
+    iata: string;
+    name: string;
+    time: string;
+    geo: Geo;
+    hdg: Hdg;
+    spd: Spd;
+    fuel: number;
+    pitch: number;
+    bank: number;
+    wind: Wind;
+};
+export type PilotStats = {
+    id: number;
+    all_time: PilotStat;
+    month: PilotStat;
+    links: Link[];
+};
+export type AirlineStats = {
+    id: number;
+    total_pilots: number;
+    all_time: PilotStat;
+    month: PilotStat;
+    links: Link[];
+};
+export type PilotStat = {
+    total_flights: number;
+    total_hours: number;
+    total_distance: number;
+    average_landing: number;
+};
+export type Screenshot = {
+    id: number;
+    name: string;
+    desc: any;
+    urls: Urls;
+    created_at: string;
+    links: Link[];
+};
+export type Urls = {
+    fullsize: string;
+    thumbnail: string;
+};
+export type FSHubApi = {
+    axios: AxiosInstance;
+    Pilot_getCurrent: () => Promise<CurrentPilot>;
+    Pilot_getAll: () => Promise<Pilot[]>;
+    Pilot_get: (id: number) => Promise<Pilot>;
+    Pilot_getLatestFlight: (id: number) => Promise<Flight>;
+    Pilot_getAllFlights: (id: number) => Promise<Flight[]>;
+    Pilot_getAllAirlines: (id: number) => Promise<Airline[]>;
+    Pilot_getStats: (id: number) => Promise<PilotStats>;
+    Pilot_getAllFlightsDepartures: (id: number, airportCode: string) => Promise<Flight[]>;
+    Pilot_getAllFlightsArrivals: (id: number, airportCode: string) => Promise<Flight[]>;
+    Pilot_getAllFlightDeparturesAndArrivals: (id: number, departureAirportCode: string, arrivalAirportCode: string) => Promise<Flight[]>;
+    Pilot_getAllScreenshots: (id: number) => Promise<Screenshot[]>;
+    Airline_getAll: () => Promise<Airline[]>;
+    Airline_get: (id: number) => Promise<Airline>;
+    Airline_getPilots: (id: number) => Promise<Pilot[]>;
+    Airline_getPilotStats: (id: number, pilotId: number) => Promise<PilotStats>;
+    Airline_getFlights: (id: number) => Promise<Flight[]>;
+    Airline_getAllFlightsDepartures: (id: number, airportCode: string) => Promise<Flight[]>;
+    Airline_getAllFlightsArrivals: (id: number, airportCode: string) => Promise<Flight[]>;
+    Airline_getAllFlightDeparturesAndArrivals: (id: number, departureAirportCode: string, arrivalAirportCode: string) => Promise<Flight[]>;
+    Airline_getAllScreenshots: (id: number) => Promise<Screenshot[]>;
+    Airline_getStats: (id: number) => Promise<AirlineStats>;
+};
 //# sourceMappingURL=index.d.ts.map
