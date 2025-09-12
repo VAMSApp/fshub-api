@@ -4,12 +4,6 @@
   "description": "TypeScript HTTP API wrapper library for FSHub REST API",
   "main": "src/index.ts",
   "types": "src/types/index.ts",
-  "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "types": "./src/types/index.ts"
-    }
-  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
