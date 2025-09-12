@@ -1,4 +1,4 @@
-import { FSHubApi, FSHubResponse, PilotStats } from "@/types";
+import { FSHubApi, FSHubResponse, PilotStats } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
 export default async function Pilot_getStats(id: number, api: FSHubApi): Promise<PilotStats> {

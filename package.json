@@ -1,9 +1,13 @@
 {
   "name": "fshub-api",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "TypeScript HTTP API wrapper library for FSHub REST API",
-  "main": "src/index.ts",
-  "types": "src/types/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VAMSApp/fshub-api"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -21,7 +25,14 @@
     "wrapper",
     "rest"
   ],
-  "author": "",
+  "_moduleAliases": {
+    "@types": "types/*",
+    "@api": "api/*"
+  },
+  "author": {
+    "name": "Mike DeVita",
+    "email": "mike@devita.co"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.0.0",
@@ -41,9 +52,5 @@
   "dependencies": {
     "axios": "^1.6.0",
     "dotenv": "^17.2.1"
-  },
-  "files": [
-    "dist",
-    "README.md"
-  ]
+  }
 }

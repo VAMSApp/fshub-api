@@ -1,4 +1,4 @@
-import { FSHubApi, FSHubResponse, Screenshot } from "@/types";
+import { FSHubApi, FSHubResponse, Screenshot } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
 export default async function Airline_getAllScreenshots(id: number, api: FSHubApi): Promise<Screenshot[]> {

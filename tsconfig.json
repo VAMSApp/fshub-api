@@ -6,6 +6,7 @@
     "lib": ["ESNext"],
     "outDir": "./dist",
     "rootDir": "./src",
+    "baseUrl": "./src",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -25,11 +26,11 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [
-    "src/**/*"
+    "src"
   ],
   "exclude": [
     "node_modules",

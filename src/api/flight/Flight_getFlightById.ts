@@ -1,5 +1,5 @@
 // https://fshub.io/api/v3/flight/{id}
-import { Flight, FSHubApi, FSHubResponse } from "@/types";
+import { Flight, FSHubApi, FSHubResponse } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
 export default async function Flight_getFlightById(id: number, api: FSHubApi): Promise<Flight> {

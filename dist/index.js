@@ -65,7 +65,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
-var api_1 = require("@/api");
+var api_1 = require("./api");
 __exportStar(require("./types"), exports);
 var FSHubApiClass = /** @class */ (function () {
     function FSHubApiClass(config) {

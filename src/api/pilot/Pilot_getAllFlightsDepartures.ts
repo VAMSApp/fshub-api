@@ -1,4 +1,4 @@
-import { Flight, FSHubApi, FSHubResponse } from "@/types";
+import { Flight, FSHubApi, FSHubResponse } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
 export default async function Pilot_getAllFlightsDepartures(id: number, airportCode: string, api: FSHubApi): Promise<Flight[]> {
