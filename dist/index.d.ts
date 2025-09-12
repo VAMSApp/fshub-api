@@ -26,5 +26,7 @@ export default class FSHubApiClass implements FSHubApi {
     Airline_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string): Promise<import("./types").Flight[]>;
     Airline_getAllScreenshots(id: number): Promise<import("./types").Screenshot[]>;
     Airline_getStats(id: number): Promise<import("./types").AirlineStats>;
+    Flight_getFlightById(id: number): Promise<import("./types").Flight>;
+    Flight_getFlightScreenshotsById(id: number): Promise<import("./types").Screenshot[]>;
 }
 //# sourceMappingURL=index.d.ts.map

@@ -300,6 +300,26 @@ var FSHubApiClass = /** @class */ (function () {
             });
         });
     };
+    FSHubApiClass.prototype.Flight_getFlightById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.flight.getFlightById(id, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Flight_getFlightScreenshotsById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.flight.getFlightScreenshotsById(id, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     return FSHubApiClass;
 }());
 exports.default = FSHubApiClass;

@@ -232,4 +232,6 @@ export type FSHubApi = {
   Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<Flight[]>
   Airline_getAllScreenshots: (id: number) => Promise<Screenshot[]>
   Airline_getStats: (id: number) => Promise<AirlineStats>
+  Flight_getFlightById: (id: number) => Promise<Flight>
+  Flight_getFlightScreenshotsById: (id: number) => Promise<Screenshot[]>
 }

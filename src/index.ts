@@ -121,4 +121,12 @@ export default class FSHubApiClass implements FSHubApi {
     public async Airline_getStats(id: number) {
         return await Api.airline.getStats(id, this);
     }
+
+    public async Flight_getFlightById(id: number) {
+        return await Api.flight.getFlightById(id, this);
+    }
+
+    public async Flight_getFlightScreenshotsById(id: number) {
+        return await Api.flight.getFlightScreenshotsById(id, this);
+    }
 }

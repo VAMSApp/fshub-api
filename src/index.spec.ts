@@ -41,6 +41,8 @@ describe('FSHubApi()', function() {
         expect(api.Airline_getAllFlightDeparturesAndArrivals).to.be.a('function');
         expect(api.Airline_getAllScreenshots).to.be.a('function');
         expect(api.Airline_getStats).to.be.a('function');
+        expect(api.Flight_getFlightById).to.be.a('function');
+        expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
     });
 
     describe('Pilot', function() {
@@ -195,6 +197,20 @@ describe('FSHubApi()', function() {
             const stats = await api.Airline_getStats(airline.id);
             
             expect(stats).to.be.an('Object');
+        });
+    });
+
+    describe('Flight', function() {
+        it('Flight_getFlightById(id) is called, it should return a valid Flight object', async function() {
+            const flight: Flight = await api.Flight_getFlightById(4009359);
+            
+            expect(flight).to.be.an('Object');
+        });
+
+        it('Flight_getFlightScreenshotsById(id) is called, it should return an array of valid Screenshot objects', async function() {
+            const flight: Screenshot[] = await api.Flight_getFlightScreenshotsById(4009359);
+            
+            expect(flight).to.be.an('Array');
         });
     });
 });

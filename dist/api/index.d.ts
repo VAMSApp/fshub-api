@@ -24,5 +24,9 @@ export declare const Api: {
         getAllScreenshots: typeof import("./airline/Airline_getAllScreenshots").default;
         getStats: typeof import("./airline/Airline_getStats").default;
     };
+    flight: {
+        getFlightById: typeof import("./flight/Flight_getFlightById").default;
+        getFlightScreenshotsById: typeof import("./flight/Flight_getFlightScreenshotsById").default;
+    };
 };
 //# sourceMappingURL=index.d.ts.map
