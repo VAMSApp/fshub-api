@@ -3,7 +3,16 @@ import { Screenshot, FSHubApi, FSHubResponse } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
 export default async function Flight_getFlightScreenshotsById(id: number, api: FSHubApi): Promise<Screenshot[]> {
-    const response: FSHubResponse<Screenshot[]> = await FSHubApiRequest(`flight/${id}/screenshot`, api);
+    let response: FSHubResponse<Screenshot[]>;
+    try {
+        response = await FSHubApiRequest(`flight/${id}/screenshot`, api);
+    } catch (error: any) {
+        if (error.message === 'Not Found') {
+            return [];
+        }
+
+        throw error;
+    }
     
     return response.data;
 }

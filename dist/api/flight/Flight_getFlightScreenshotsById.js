@@ -43,13 +43,22 @@ exports.default = Flight_getFlightScreenshotsById;
 var FSHubApiRequest_1 = __importDefault(require("../FSHubApiRequest"));
 function Flight_getFlightScreenshotsById(id, api) {
     return __awaiter(this, void 0, void 0, function () {
-        var response;
+        var response, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("flight/".concat(id, "/screenshot"), api)];
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, (0, FSHubApiRequest_1.default)("flight/".concat(id, "/screenshot"), api)];
                 case 1:
                     response = _a.sent();
-                    return [2 /*return*/, response.data];
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    if (error_1.message === 'Not Found') {
+                        return [2 /*return*/, []];
+                    }
+                    throw error_1;
+                case 3: return [2 /*return*/, response.data];
             }
         });
     });
