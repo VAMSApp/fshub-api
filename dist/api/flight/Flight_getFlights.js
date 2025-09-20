@@ -39,14 +39,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Pilot_getStats;
+exports.default = Flight_getFlights;
 var FSHubApiRequest_1 = __importDefault(require("../FSHubApiRequest"));
-function Pilot_getStats(id, api) {
+function Flight_getFlights(api, options) {
     return __awaiter(this, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("pilot/".concat(id, "/stats"), api)];
+                case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("flight", api, options)];
                 case 1:
                     response = _a.sent();
                     return [2 /*return*/, response];
@@ -54,4 +54,4 @@ function Pilot_getStats(id, api) {
         });
     });
 }
-//# sourceMappingURL=Pilot_getStats.js.map
+//# sourceMappingURL=Flight_getFlights.js.map

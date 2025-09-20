@@ -1,0 +1,1 @@
+{"version":3,"file":"Flight_getFlights.d.ts","sourceRoot":"","sources":["../../../src/api/flight/Flight_getFlights.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,MAAM,EAAE,QAAQ,EAAE,mBAAmB,EAAE,aAAa,EAAE,MAAM,aAAa,CAAC;AAGnF,wBAA8B,iBAAiB,CAAC,GAAG,EAAE,QAAQ,EAAE,OAAO,CAAC,EAAE,mBAAmB,GAAG,OAAO,CAAC,aAAa,CAAC,MAAM,EAAE,CAAC,CAAC,CAI9H"}

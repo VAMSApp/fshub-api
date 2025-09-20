@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/api/flight/index.ts"],"names":[],"mappings":"AAAA,OAAO,oBAAoB,MAAM,wBAAwB,CAAC;AAC1D,OAAO,+BAA+B,MAAM,mCAAmC,CAAC;AAEhF,eAAO,MAAM,MAAM;;;CAGlB,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/api/flight/index.ts"],"names":[],"mappings":"AAAA,OAAO,oBAAoB,MAAM,wBAAwB,CAAC;AAC1D,OAAO,+BAA+B,MAAM,mCAAmC,CAAC;AAChF,OAAO,iBAAiB,MAAM,qBAAqB,CAAC;AAEpD,eAAO,MAAM,MAAM;;;;CAIlB,CAAC"}

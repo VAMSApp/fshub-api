@@ -49,7 +49,7 @@ function Airline_getPilotStats(id, pilotId, api) {
                 case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("airline/".concat(id, "/pilot/").concat(pilotId, "/stats"), api)];
                 case 1:
                     response = _a.sent();
-                    return [2 /*return*/, response.data];
+                    return [2 /*return*/, response];
             }
         });
     });

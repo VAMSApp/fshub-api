@@ -49,7 +49,7 @@ function Pilot_getAllFlightDeparturesAndArrivals(id, departureAirportCode, arriv
                 case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("pilot/".concat(id, "/flight/departure/").concat(departureAirportCode, "/arrival/").concat(arrivalAirportCode), api)];
                 case 1:
                     response = _a.sent();
-                    return [2 /*return*/, response.data];
+                    return [2 /*return*/, response];
             }
         });
     });

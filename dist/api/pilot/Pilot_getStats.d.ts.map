@@ -1,1 +1,1 @@
-{"version":3,"file":"Pilot_getStats.d.ts","sourceRoot":"","sources":["../../../src/api/pilot/Pilot_getStats.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAiB,UAAU,EAAE,MAAM,aAAa,CAAC;AAGlE,wBAA8B,cAAc,CAAC,EAAE,EAAE,MAAM,EAAE,GAAG,EAAE,QAAQ,GAAG,OAAO,CAAC,UAAU,CAAC,CAI3F"}
+{"version":3,"file":"Pilot_getStats.d.ts","sourceRoot":"","sources":["../../../src/api/pilot/Pilot_getStats.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAE,UAAU,EAAE,MAAM,aAAa,CAAC;AAGlE,wBAA8B,cAAc,CAAC,EAAE,EAAE,MAAM,EAAE,GAAG,EAAE,QAAQ,GAAG,OAAO,CAAC,aAAa,CAAC,UAAU,CAAC,CAAC,CAI1G"}

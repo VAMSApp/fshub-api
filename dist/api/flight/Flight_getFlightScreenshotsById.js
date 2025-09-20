@@ -55,10 +55,10 @@ function Flight_getFlightScreenshotsById(id, api) {
                 case 2:
                     error_1 = _a.sent();
                     if (error_1.message === 'Not Found') {
-                        return [2 /*return*/, []];
+                        return [2 /*return*/, { data: [] }];
                     }
                     throw error_1;
-                case 3: return [2 /*return*/, response.data];
+                case 3: return [2 /*return*/, response];
             }
         });
     });

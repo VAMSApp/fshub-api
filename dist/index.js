@@ -89,6 +89,19 @@ var FSHubApiClass = /** @class */ (function () {
         this.Pilot_getAllFlightsArrivals = this.Pilot_getAllFlightsArrivals.bind(this);
         this.Pilot_getAllFlightDeparturesAndArrivals = this.Pilot_getAllFlightDeparturesAndArrivals.bind(this);
         this.Pilot_getAllScreenshots = this.Pilot_getAllScreenshots.bind(this);
+        this.Airline_getAll = this.Airline_getAll.bind(this);
+        this.Airline_get = this.Airline_get.bind(this);
+        this.Airline_getPilots = this.Airline_getPilots.bind(this);
+        this.Airline_getPilotStats = this.Airline_getPilotStats.bind(this);
+        this.Airline_getFlights = this.Airline_getFlights.bind(this);
+        this.Airline_getAllFlightsDepartures = this.Airline_getAllFlightsDepartures.bind(this);
+        this.Airline_getAllFlightsArrivals = this.Airline_getAllFlightsArrivals.bind(this);
+        this.Airline_getAllFlightDeparturesAndArrivals = this.Airline_getAllFlightDeparturesAndArrivals.bind(this);
+        this.Airline_getAllScreenshots = this.Airline_getAllScreenshots.bind(this);
+        this.Airline_getStats = this.Airline_getStats.bind(this);
+        this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
+        this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
+        this.Flight_getFlights = this.Flight_getFlights.bind(this);
     }
     FSHubApiClass.prototype.Pilot_getCurrent = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -315,6 +328,16 @@ var FSHubApiClass = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, api_1.Api.flight.getFlightScreenshotsById(id, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Flight_getFlights = function (options) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.flight.getFlights(this, options)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

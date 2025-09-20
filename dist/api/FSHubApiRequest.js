@@ -37,20 +37,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = FSHubApiRequest;
-function FSHubApiRequest(url, api) {
+function FSHubApiRequest(url, api, options) {
     return __awaiter(this, void 0, void 0, function () {
-        var response;
+        var queryParams, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, api.axios.get(url)
-                        .then(function (res) { return res.data; })
-                        .catch(function (err) {
-                        var _a, _b;
-                        if (((_a = err.response) === null || _a === void 0 ? void 0 : _a.data.code) === 404) {
-                            throw new Error('Not Found');
-                        }
-                        throw new Error((_b = err.response) === null || _b === void 0 ? void 0 : _b.data.message);
-                    })];
+                case 0:
+                    queryParams = '';
+                    if (options) {
+                        queryParams = "?cursor=".concat(options.cursor, "&limit=").concat(options.limit);
+                    }
+                    return [4 /*yield*/, api.axios.get(url + queryParams)
+                            .then(function (res) { return res.data; })
+                            .catch(function (err) {
+                            var _a, _b;
+                            if (((_a = err.response) === null || _a === void 0 ? void 0 : _a.data.code) === 404) {
+                                throw new Error('Not Found');
+                            }
+                            throw new Error((_b = err.response) === null || _b === void 0 ? void 0 : _b.data.message);
+                        })];
                 case 1:
                     response = _a.sent();
                     return [2 /*return*/, response];

@@ -49,7 +49,7 @@ function Flight_getFlightById(id, api) {
                 case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("flight/".concat(id), api)];
                 case 1:
                     response = _a.sent();
-                    return [2 /*return*/, response.data];
+                    return [2 /*return*/, response];
             }
         });
     });

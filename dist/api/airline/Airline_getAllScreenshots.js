@@ -51,11 +51,11 @@ function Airline_getAllScreenshots(id, api) {
                     return [4 /*yield*/, (0, FSHubApiRequest_1.default)("airline/".concat(id, "/screenshot"), api)];
                 case 1:
                     response = _a.sent();
-                    return [2 /*return*/, response.data];
+                    return [2 /*return*/, response];
                 case 2:
                     error_1 = _a.sent();
                     if (error_1 instanceof Error && error_1.message === 'No records found') {
-                        return [2 /*return*/, []];
+                        return [2 /*return*/, { data: [] }];
                     }
                     throw error_1;
                 case 3: return [2 /*return*/];

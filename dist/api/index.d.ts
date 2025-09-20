@@ -27,6 +27,7 @@ export declare const Api: {
     flight: {
         getFlightById: typeof import("./flight/Flight_getFlightById").default;
         getFlightScreenshotsById: typeof import("./flight/Flight_getFlightScreenshotsById").default;
+        getFlights: typeof import("./flight/Flight_getFlights").default;
     };
 };
 //# sourceMappingURL=index.d.ts.map
