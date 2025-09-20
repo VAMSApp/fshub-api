@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import type{ Config, FSHubApi } from './types';
+import type{ Config, FSHubApi, FSHubRequestOptions } from './types';
 import { Api } from './api';
 export * from './types';
 
@@ -35,6 +35,21 @@ export default class FSHubApiClass implements FSHubApi {
         this.Pilot_getAllFlightsArrivals = this.Pilot_getAllFlightsArrivals.bind(this);
         this.Pilot_getAllFlightDeparturesAndArrivals = this.Pilot_getAllFlightDeparturesAndArrivals.bind(this);
         this.Pilot_getAllScreenshots = this.Pilot_getAllScreenshots.bind(this);
+        
+        this.Airline_getAll = this.Airline_getAll.bind(this);
+        this.Airline_get = this.Airline_get.bind(this);
+        this.Airline_getPilots = this.Airline_getPilots.bind(this);
+        this.Airline_getPilotStats = this.Airline_getPilotStats.bind(this);
+        this.Airline_getFlights = this.Airline_getFlights.bind(this);
+        this.Airline_getAllFlightsDepartures = this.Airline_getAllFlightsDepartures.bind(this);
+        this.Airline_getAllFlightsArrivals = this.Airline_getAllFlightsArrivals.bind(this);
+        this.Airline_getAllFlightDeparturesAndArrivals = this.Airline_getAllFlightDeparturesAndArrivals.bind(this);
+        this.Airline_getAllScreenshots = this.Airline_getAllScreenshots.bind(this);
+        this.Airline_getStats = this.Airline_getStats.bind(this);
+
+        this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
+        this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
+        this.Flight_getFlights = this.Flight_getFlights.bind(this);
     }
 
     public async Pilot_getCurrent() {
@@ -127,5 +142,9 @@ export default class FSHubApiClass implements FSHubApi {
 
     public async Flight_getFlightScreenshotsById(id: number) {
         return await Api.flight.getFlightScreenshotsById(id, this);
+    }
+
+    public async Flight_getFlights(options?: FSHubRequestOptions) {
+        return await Api.flight.getFlights(this, options);
     }
 }

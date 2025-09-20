@@ -2,7 +2,7 @@ import { describe, before } from 'mocha';
 import { expect } from 'chai';
 import FSHubApiClass from './index';
 import dotenv from 'dotenv';
-import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot  } from './types';
+import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats  } from './types';
 
 dotenv.config();
 let api: FSHubApi;
@@ -43,174 +43,208 @@ describe('FSHubApi()', function() {
         expect(api.Airline_getStats).to.be.a('function');
         expect(api.Flight_getFlightById).to.be.a('function');
         expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
+        expect(api.Flight_getFlights).to.be.a('function');
     });
 
     describe('Pilot', function() {
         it('Pilot_getCurrent() is called, it should return a valid CurrentPilot object', async function() {
-            const pilot: CurrentPilot = await api.Pilot_getCurrent();
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
 
-            expect(pilot).to.be.an('Object');
-            expect(pilot.id).to.be.a('number');
-            expect(pilot.name).to.be.a('string');
-            expect(pilot.base).to.be.a('string');
-            expect(pilot.locale).to.be.an('string');
-            expect(pilot.gps).to.be.an('Object');
+            expect(pilot.data).to.be.an('Object');
+            expect(pilot.data.id).to.be.a('number');
+            expect(pilot.data.name).to.be.a('string');
+            expect(pilot.data.base).to.be.a('string');
+            expect(pilot.data.locale).to.be.an('string');
+            expect(pilot.data.gps).to.be.an('Object');
         });
 
         it('Pilot_getAll() is called, it should return an array of valid Pilot objects', async function() {
-            const pilots: Pilot[] = await api.Pilot_getAll();
+            const pilots: FSHubResponse<Pilot[]> = await api.Pilot_getAll();
 
-            expect(pilots).to.be.an('Array');
+            expect(pilots.data).to.be.an('Array');
         });
 
         it('Pilot_get(id) is called, it should return a valid Pilot object', async function() {
-            const pilot: Pilot = await api.Pilot_get(1);
+            const pilot: FSHubResponse<Pilot> = await api.Pilot_get(1);
 
-            expect(pilot).to.be.an('Object');
+            expect(pilot.data).to.be.an('Object');
+            expect(pilot.data).to.be.an('Object');
+            expect(pilot.data.id).to.be.a('number');
+            expect(pilot.data.name).to.be.a('string');
+            expect(pilot.data.base).to.be.a('string');
+            expect(pilot.data.locale).to.be.an('string');
+            expect(pilot.data.gps).to.be.an('Object');
         });
 
         it('Pilot_getLatestFlight(id) is called, it should return a valid Flight object', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const flight: Flight = await api.Pilot_getLatestFlight(pilot.id);
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flight: FSHubResponse<Flight> = await api.Pilot_getLatestFlight(pilot.data.id);
 
             expect(flight).to.be.an('Object');
         });
 
         it('Pilot_getAllFlights(id) is called, it should return an array of valid Flight objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const flights: Flight[] = await api.Pilot_getAllFlights(pilot.id);
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlights(pilot.data.id);
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Pilot_getAllAirlines(id) is called, it should return an array of valid Airline objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const airlines: Airline[] = await api.Pilot_getAllAirlines(pilot.id);
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const airlines: FSHubResponse<Airline[]> = await api.Pilot_getAllAirlines(pilot.data.id);
             
-            expect(airlines).to.be.an('Array');
+            expect(airlines.data).to.be.an('Array');
         });
 
         it('Pilot_getStats(id) is called, it should return a valid PilotStats object', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const stats: PilotStats = await api.Pilot_getStats(pilot.id);
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const stats: FSHubResponse<PilotStats> = await api.Pilot_getStats(pilot.data.id);
             
-            expect(stats).to.be.an('Object');
-            expect(stats.id).to.be.a('number'); 
-            expect(stats.all_time).to.be.an('Object');
-            expect(stats.month).to.be.an('Object');
+            expect(stats.data).to.be.an('Object');
+            expect(stats.data.id).to.be.a('number'); 
+            expect(stats.data.all_time).to.be.an('Object');
+            expect(stats.data.month).to.be.an('Object');
         });
 
         it('Pilot_getAllFlightsDepartures(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const flights: Flight[] = await api.Pilot_getAllFlightsDepartures(pilot.id, 'KPHX');
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsDepartures(pilot.data.id, 'KPHX');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Pilot_getAllFlightsArrivals(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const flights: Flight[] = await api.Pilot_getAllFlightsArrivals(pilot.id, 'KPHX');
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsArrivals(pilot.data.id, 'KPHX');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Pilot_getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode) is called, it should return an array of valid Flight objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const flights: Flight[] = await api.Pilot_getAllFlightDeparturesAndArrivals(pilot.id, 'KPHX', 'KJAC');
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightDeparturesAndArrivals(pilot.data.id, 'KPHX', 'KJAC');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Pilot_getAllScreenshots(id) is called, it should return an array of valid Screenshot objects', async function() {
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const screenshots: Screenshot[] = await api.Pilot_getAllScreenshots(pilot.id);
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Pilot_getAllScreenshots(pilot.data.id);
             
-            expect(screenshots).to.be.an('Array');
+            expect(screenshots.data).to.be.an('Array');
         });
     });
 
     describe('Airline', function() {
         it('Airline_getAll() is called, it should return an array of valid Airline objects', async function() {
-            const airlines: Airline[] = await api.Airline_getAll();
+            const airlines: FSHubResponse<Airline[]> = await api.Airline_getAll();
             
-            expect(airlines).to.be.an('Array');
+            expect(airlines.data).to.be.an('Array');
         });
 
         it('Airline_get(id) is called, it should return a valid Airline object', async function() {
-            const airline: Airline = await api.Airline_get(6082);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             
-            expect(airline).to.be.an('Object');
+            expect(airline.data).to.be.an('Object');
         });
 
         it('Airline_getPilots(id) is called, it should return an array of valid Pilot objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const pilots: Pilot[] = await api.Airline_getPilots(airline.id);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilots: FSHubResponse<Pilot[]> = await api.Airline_getPilots(airline.data.id);
             
-            expect(pilots).to.be.an('Array');
+            expect(pilots.data).to.be.an('Array');
         });
 
         it('Airline_getPilotStats(id, pilotId) is called, it should return a valid PilotStats object', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const pilot: Pilot = await api.Pilot_getCurrent();
-            const stats: PilotStats = await api.Airline_getPilotStats(airline.id, pilot.id);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilot: FSHubResponse<Pilot> = await api.Pilot_getCurrent();
+            const stats: FSHubResponse<PilotStats> = await api.Airline_getPilotStats(airline.data.id, pilot.data.id);
             
-            expect(stats).to.be.an('Object');
+            expect(stats.data).to.be.an('Object');
         });
 
         it('Airline_getFlights(id) is called, it should return an array of valid Flight objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const flights: Flight[] = await api.Airline_getFlights(airline.id);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getFlights(airline.data.id);
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Airline_getAllFlightsDepartures(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const flights: Flight[] = await api.Airline_getAllFlightsDepartures(airline.id, 'KPHX');
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsDepartures(airline.data.id, 'KPHX');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Airline_getAllFlightsArrivals(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const flights: Flight[] = await api.Airline_getAllFlightsArrivals(airline.id, 'KPHX');
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsArrivals(airline.data.id, 'KPHX');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Airline_getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode) is called, it should return an array of valid Flight objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const flights: Flight[] = await api.Airline_getAllFlightDeparturesAndArrivals(airline.id, 'KPHX', 'KJAC');
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightDeparturesAndArrivals(airline.data.id, 'KPHX', 'KJAC');
             
-            expect(flights).to.be.an('Array');
+            expect(flights.data).to.be.an('Array');
         });
 
         it('Airline_getAllScreenshots(id) is called, it should return an array of valid Screenshot objects', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const screenshots: Screenshot[] = await api.Airline_getAllScreenshots(airline.id);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Airline_getAllScreenshots(airline.data.id);
             
-            expect(screenshots).to.be.an('Array');
+            expect(screenshots.data).to.be.an('Array');
         });
 
         it('Airline_getStats(id) is called, it should return a valid object with airline statistics', async function() {
-            const airline: Airline = await api.Airline_get(6082);
-            const stats = await api.Airline_getStats(airline.id);
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const stats: FSHubResponse<AirlineStats> = await api.Airline_getStats(airline.data.id);
             
-            expect(stats).to.be.an('Object');
+            expect(stats.data).to.be.an('Object');
         });
     });
 
     describe('Flight', function() {
-        it('Flight_getFlightById(id) is called, it should return a valid Flight object', async function() {
-            const flight: Flight = await api.Flight_getFlightById(4009359);
-            
-            expect(flight).to.be.an('Object');
+        describe('Flight_getFlightById(id)', function() {
+            it('Flight_getFlightById(id) is called, it should return a valid Flight object', async function() {
+                const flight: FSHubResponse<Flight> = await api.Flight_getFlightById(4009359);
+                
+                expect(flight.data).to.be.an('Object');
+            });
         });
 
-        it('Flight_getFlightScreenshotsById(id) is called, it should return an array of valid Screenshot objects', async function() {
-            const flight: Screenshot[] = await api.Flight_getFlightScreenshotsById(4009359);
-            
-            expect(flight).to.be.an('Array');
+        describe('Flight_getFlightScreenshotsById(id)', function() {
+            it('Flight_getFlightScreenshotsById(id) is called, it should return an array of valid Screenshot objects', async function() {
+                const flight: FSHubResponse<Screenshot[]> = await api.Flight_getFlightScreenshotsById(4009359);
+                
+                expect(flight.data).to.be.an('Array');
+            });
+        });
+
+        describe('Flight_getFlights(options)', function() {
+            it('Flight_getFlights(options) is called, it should return an array of valid Flight objects', async function() {
+                const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights();
+                
+                expect(flights.data).to.be.an('Array');
+                expect(flights.data.length).to.be.equal(10);
+            });
+
+            it('Flight_getFlights(options) is called with limit option, it should limit the number of flights returned', async function() {
+                const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights({ limit: 1 });
+                
+                expect(flights.data).to.be.an('Array');
+                expect(flights.data.length).to.be.equal(1);
+            });
+
+            it('Flight_getFlights(options) is called with cursor option, it should return the next page of flights', async function() {
+                const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights({ cursor: 100 });
+                
+                expect(flights.data).to.be.an('Array');
+                expect(flights.data.length).to.be.equal(100);
+            });
         });
     });
 });

@@ -1,8 +1,8 @@
 import { AirlineStats, FSHubApi, FSHubResponse } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
-export default async function Airline_getStats(id: number, api: FSHubApi): Promise<AirlineStats> {
+export default async function Airline_getStats(id: number, api: FSHubApi): Promise<FSHubResponse<AirlineStats>> {
     const response: FSHubResponse<AirlineStats> = await FSHubApiRequest(`airline/${id}/stats`, api);
     
-    return response.data;
+    return response;
 }

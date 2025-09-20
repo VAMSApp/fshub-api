@@ -49,19 +49,6 @@ export type Gps = {
   lng: number
 }
 
-export type FSHubResponse<T> = {
-  data: T
-}
-
-export type FSHubError = {
-  message: string
-  code: number
-  error?: boolean
-  details?: {
-    pilot: number
-  }
-}
-
 export type Flight = {
   id: number
   user: User
@@ -209,29 +196,56 @@ export type Urls = {
   thumbnail: string
 }
 
+export type FSHubRequestOptions = {
+  cursor?: number;
+  limit?: number;
+}
+
 export type FSHubApi = {
   axios: AxiosInstance
-  Pilot_getCurrent: () => Promise<CurrentPilot>
-  Pilot_getAll: () => Promise<Pilot[]>
-  Pilot_get: (id: number) => Promise<Pilot>
-  Pilot_getLatestFlight: (id: number) => Promise<Flight>
-  Pilot_getAllFlights: (id: number) => Promise<Flight[]>
-  Pilot_getAllAirlines: (id: number) => Promise<Airline[]>
-  Pilot_getStats: (id: number) => Promise<PilotStats>
-  Pilot_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<Flight[]>
-  Pilot_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<Flight[]>
-  Pilot_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<Flight[]>
-  Pilot_getAllScreenshots: (id: number) => Promise<Screenshot[]>
-  Airline_getAll: () => Promise<Airline[]>
-  Airline_get: (id: number) => Promise<Airline>
-  Airline_getPilots: (id: number) => Promise<Pilot[]>
-  Airline_getPilotStats: (id: number, pilotId: number) => Promise<PilotStats>
-  Airline_getFlights: (id: number) => Promise<Flight[]>
-  Airline_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<Flight[]>
-  Airline_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<Flight[]>
-  Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<Flight[]>
-  Airline_getAllScreenshots: (id: number) => Promise<Screenshot[]>
-  Airline_getStats: (id: number) => Promise<AirlineStats>
-  Flight_getFlightById: (id: number) => Promise<Flight>
-  Flight_getFlightScreenshotsById: (id: number) => Promise<Screenshot[]>
+  Pilot_getCurrent: () => Promise<FSHubResponse<CurrentPilot>>
+  Pilot_getAll: () => Promise<FSHubResponse<Pilot[]>>
+  Pilot_get: (id: number) => Promise<FSHubResponse<Pilot>>
+  Pilot_getLatestFlight: (id: number) => Promise<FSHubResponse<Flight>>
+  Pilot_getAllFlights: (id: number) => Promise<FSHubResponse<Flight[]>>
+  Pilot_getAllAirlines: (id: number) => Promise<FSHubResponse<Airline[]>>
+  Pilot_getStats: (id: number) => Promise<FSHubResponse<PilotStats>>
+  Pilot_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Pilot_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Pilot_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Pilot_getAllScreenshots: (id: number) => Promise<FSHubResponse<Screenshot[]>>
+  Airline_getAll: () => Promise<FSHubResponse<Airline[]>>
+  Airline_get: (id: number) => Promise<FSHubResponse<Airline>>
+  Airline_getPilots: (id: number) => Promise<FSHubResponse<Pilot[]>>
+  Airline_getPilotStats: (id: number, pilotId: number) => Promise<FSHubResponse<PilotStats>>
+  Airline_getFlights: (id: number) => Promise<FSHubResponse<Flight[]>>
+  Airline_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Airline_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<FSHubResponse<Flight[]>>
+  Airline_getAllScreenshots: (id: number) => Promise<FSHubResponse<Screenshot[]>>
+  Airline_getStats: (id: number) => Promise<FSHubResponse<AirlineStats>>
+  Flight_getFlightById: (id: number) => Promise<FSHubResponse<Flight>>
+  Flight_getFlightScreenshotsById: (id: number) => Promise<FSHubResponse<Screenshot[]>>
+  Flight_getFlights: (options?: FSHubRequestOptions) => Promise<FSHubResponse<Flight[]>>
+}
+
+export type FSHubResponse<T> = {
+  data: T
+  meta?: {
+    cursor: {
+      current: number
+      prev: number
+      next: number
+      count: number
+    }
+  }
+}
+
+export type FSHubError = {
+  message: string
+  code: number
+  error?: boolean
+  details?: {
+    pilot: number
+  }
 }

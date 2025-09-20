@@ -1,8 +1,8 @@
 import { CurrentPilot, FSHubApi, FSHubResponse } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
-export default async function Pilot_getCurrent(api: FSHubApi): Promise<CurrentPilot> {
+export default async function Pilot_getCurrent(api: FSHubApi): Promise<FSHubResponse<CurrentPilot>> {
     const response: FSHubResponse<CurrentPilot> = await FSHubApiRequest('user', api);
     
-    return response.data;
+    return response;
 }
