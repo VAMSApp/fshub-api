@@ -1,0 +1,1 @@
+{"version":3,"file":"Airline_pilotSetRank.d.ts","sourceRoot":"","sources":["../../../src/api/airline/Airline_pilotSetRank.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAE,wBAAwB,EAAE,qBAAqB,EAAE,MAAM,aAAa,CAAC;AAGvG,wBAA8B,oBAAoB,CAAC,OAAO,EAAE,MAAM,EAAE,SAAS,EAAE,MAAM,EAAE,IAAI,EAAE,qBAAqB,EAAE,GAAG,EAAE,QAAQ,GAAG,OAAO,CAAC,aAAa,CAAC,wBAAwB,CAAC,CAAC,CAMnL"}

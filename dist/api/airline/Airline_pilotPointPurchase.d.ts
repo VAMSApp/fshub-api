@@ -1,0 +1,3 @@
+import { FSHubApi, FSHubResponse, FSHubPilotPointPurchaseTransactionResponse, FSHubPilotPointPurchaseTransactionData } from "../../types";
+export default function Airline_pilotPointPurchase(pilotId: number, airlineId: number, data: FSHubPilotPointPurchaseTransactionData, api: FSHubApi): Promise<FSHubResponse<FSHubPilotPointPurchaseTransactionResponse>>;
+//# sourceMappingURL=Airline_pilotPointPurchase.d.ts.map

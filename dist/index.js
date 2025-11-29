@@ -99,6 +99,12 @@ var FSHubApiClass = /** @class */ (function () {
         this.Airline_getAllFlightDeparturesAndArrivals = this.Airline_getAllFlightDeparturesAndArrivals.bind(this);
         this.Airline_getAllScreenshots = this.Airline_getAllScreenshots.bind(this);
         this.Airline_getStats = this.Airline_getStats.bind(this);
+        this.Airline_approveApplication = this.Airline_approveApplication.bind(this);
+        this.Airline_rejectApplication = this.Airline_rejectApplication.bind(this);
+        this.Airline_pilotPointPurchase = this.Airline_pilotPointPurchase.bind(this);
+        this.Airline_pilotSetRank = this.Airline_pilotSetRank.bind(this);
+        this.Airline_getAllRanks = this.Airline_getAllRanks.bind(this);
+        this.Airline_getAllRoles = this.Airline_getAllRoles.bind(this);
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
         this.Flight_getFlights = this.Flight_getFlights.bind(this);
@@ -308,6 +314,66 @@ var FSHubApiClass = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, api_1.Api.airline.getStats(id, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_approveApplication = function (pilotId, airlineId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.approveApplication(pilotId, airlineId, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_rejectApplication = function (pilotId, airlineId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.rejectApplication(pilotId, airlineId, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_pilotPointPurchase = function (pilotId, airlineId, data) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.pilotPointPurchase(pilotId, airlineId, data, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_pilotSetRank = function (pilotId, airlineId, data) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.pilotSetRank(pilotId, airlineId, data, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_getAllRanks = function (airlineId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.getAllRanks(airlineId, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_getAllRoles = function (airlineId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.getAllRoles(airlineId, this)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import type { Config, FSHubApi, FSHubRequestOptions } from './types';
+import type { Config, FSHubApi, FSHubPilotPointPurchaseTransactionData, FSHubPilotSetRankData, FSHubRequestOptions } from './types';
 export * from './types';
 export default class FSHubApiClass implements FSHubApi {
     private readonly config;
@@ -26,6 +26,12 @@ export default class FSHubApiClass implements FSHubApi {
     Airline_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string): Promise<import("./types").FSHubResponse<import("./types").Flight[]>>;
     Airline_getAllScreenshots(id: number): Promise<import("./types").FSHubResponse<import("./types").Screenshot[]>>;
     Airline_getStats(id: number): Promise<import("./types").FSHubResponse<import("./types").AirlineStats>>;
+    Airline_approveApplication(pilotId: number, airlineId: number): Promise<import("./types").FSHubResponse<import("./types").FSHubApplicationResponse>>;
+    Airline_rejectApplication(pilotId: number, airlineId: number): Promise<import("./types").FSHubResponse<import("./types").FSHubApplicationResponse>>;
+    Airline_pilotPointPurchase(pilotId: number, airlineId: number, data: FSHubPilotPointPurchaseTransactionData): Promise<import("./types").FSHubResponse<import("./types").FSHubPilotPointPurchaseTransactionResponse>>;
+    Airline_pilotSetRank(pilotId: number, airlineId: number, data: FSHubPilotSetRankData): Promise<import("./types").FSHubResponse<import("./types").FSHubApplicationResponse>>;
+    Airline_getAllRanks(airlineId: number): Promise<import("./types").FSHubResponse<import("./types").FSHubAirlineRank[]>>;
+    Airline_getAllRoles(airlineId: number): Promise<import("./types").FSHubResponse<import("./types").FSHubAirlineRole[]>>;
     Flight_getFlightById(id: number): Promise<import("./types").FSHubResponse<import("./types").Flight>>;
     Flight_getFlightScreenshotsById(id: number): Promise<import("./types").FSHubResponse<import("./types").Screenshot[]>>;
     Flight_getFlights(options?: FSHubRequestOptions): Promise<import("./types").FSHubResponse<import("./types").Flight[]>>;

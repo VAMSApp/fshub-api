@@ -23,6 +23,12 @@ export declare const Api: {
         getAllFlightDeparturesAndArrivals: typeof import("./airline/Airline_getAllFlightDeparturesAndArrivals").default;
         getAllScreenshots: typeof import("./airline/Airline_getAllScreenshots").default;
         getStats: typeof import("./airline/Airline_getStats").default;
+        approveApplication: typeof import("./airline/Airline_approveApplication").default;
+        rejectApplication: typeof import("./airline/Airline_rejectApplication").default;
+        pilotPointPurchase: typeof import("./airline/Airline_pilotPointPurchase").default;
+        pilotSetRank: typeof import("./airline/Airline_pilotSetRank").default;
+        getAllRanks: typeof import("./airline/Airline_getAllRanks").default;
+        getAllRoles: typeof import("./airline/Airline_getAllRoles").default;
     };
     flight: {
         getFlightById: typeof import("./flight/Flight_getFlightById").default;

@@ -35,47 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FSHubApiRequest = FSHubApiRequest;
-exports.FSHubApiPostRequest = FSHubApiPostRequest;
-exports.FSHubApiPutRequest = FSHubApiPutRequest;
-function FSHubApiRequest(url, api, options) {
-    return __awaiter(this, void 0, void 0, function () {
-        var queryParams, response;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    queryParams = '';
-                    if (options) {
-                        queryParams = "?cursor=".concat(options.cursor, "&limit=").concat(options.limit);
-                    }
-                    return [4 /*yield*/, api.axios.get(url + queryParams)
-                            .then(function (res) { return res.data; })
-                            .catch(function (err) {
-                            var _a, _b;
-                            if (((_a = err.response) === null || _a === void 0 ? void 0 : _a.data.code) === 404) {
-                                throw new Error('Not Found');
-                            }
-                            throw new Error((_b = err.response) === null || _b === void 0 ? void 0 : _b.data.message);
-                        })];
-                case 1:
-                    response = _a.sent();
-                    return [2 /*return*/, response];
-            }
-        });
-    });
-}
-function FSHubApiPostRequest(url, api, data) {
+exports.default = Airline_getAllRanks;
+var FSHubApiRequest_1 = __importDefault(require("../FSHubApiRequest"));
+function Airline_getAllRanks(airlineId, api) {
     return __awaiter(this, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, api.axios.post(url, data)
-                        .then(function (res) { return res.data; })
-                        .catch(function (err) {
-                        var _a;
-                        throw new Error((_a = err.response) === null || _a === void 0 ? void 0 : _a.data.message);
-                    })];
+                case 0: return [4 /*yield*/, (0, FSHubApiRequest_1.default)("airline/".concat(airlineId, "/rank"), api)];
                 case 1:
                     response = _a.sent();
                     return [2 /*return*/, response];
@@ -83,23 +54,4 @@ function FSHubApiPostRequest(url, api, data) {
         });
     });
 }
-function FSHubApiPutRequest(url, api, data) {
-    return __awaiter(this, void 0, void 0, function () {
-        var response;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, api.axios.put(url, data)
-                        .then(function (res) { return res.data; })
-                        .catch(function (err) {
-                        var _a;
-                        throw new Error((_a = err.response) === null || _a === void 0 ? void 0 : _a.data.message);
-                    })];
-                case 1:
-                    response = _a.sent();
-                    return [2 /*return*/, response];
-            }
-        });
-    });
-}
-exports.default = FSHubApiRequest;
-//# sourceMappingURL=FSHubApiRequest.js.map
+//# sourceMappingURL=Airline_getAllRanks.js.map

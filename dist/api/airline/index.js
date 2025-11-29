@@ -14,6 +14,12 @@ var Airline_getAllFlightsArrivals_1 = __importDefault(require("./Airline_getAllF
 var Airline_getAllFlightDeparturesAndArrivals_1 = __importDefault(require("./Airline_getAllFlightDeparturesAndArrivals"));
 var Airline_getAllScreenshots_1 = __importDefault(require("./Airline_getAllScreenshots"));
 var Airline_getStats_1 = __importDefault(require("./Airline_getStats"));
+var Airline_approveApplication_1 = __importDefault(require("./Airline_approveApplication"));
+var Airline_rejectApplication_1 = __importDefault(require("./Airline_rejectApplication"));
+var Airline_pilotPointPurchase_1 = __importDefault(require("./Airline_pilotPointPurchase"));
+var Airline_getAllRanks_1 = __importDefault(require("./Airline_getAllRanks"));
+var Airline_getAllRoles_1 = __importDefault(require("./Airline_getAllRoles"));
+var Airline_pilotSetRank_1 = __importDefault(require("./Airline_pilotSetRank"));
 exports.Airline = {
     getAll: Airline_getAll_1.default,
     get: Airline_get_1.default,
@@ -25,5 +31,11 @@ exports.Airline = {
     getAllFlightDeparturesAndArrivals: Airline_getAllFlightDeparturesAndArrivals_1.default,
     getAllScreenshots: Airline_getAllScreenshots_1.default,
     getStats: Airline_getStats_1.default,
+    approveApplication: Airline_approveApplication_1.default,
+    rejectApplication: Airline_rejectApplication_1.default,
+    pilotPointPurchase: Airline_pilotPointPurchase_1.default,
+    pilotSetRank: Airline_pilotSetRank_1.default,
+    getAllRanks: Airline_getAllRanks_1.default,
+    getAllRoles: Airline_getAllRoles_1.default,
 };
 //# sourceMappingURL=index.js.map
