@@ -224,6 +224,12 @@ export type FSHubApi = {
   Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<FSHubResponse<Flight[]>>
   Airline_getAllScreenshots: (id: number) => Promise<FSHubResponse<Screenshot[]>>
   Airline_getStats: (id: number) => Promise<FSHubResponse<AirlineStats>>
+  Airline_approveApplication: (pilotId: number, airlineId: number) => Promise<FSHubResponse<FSHubApplicationResponse>>
+  Airline_rejectApplication: (pilotId: number, airlineId: number) => Promise<FSHubResponse<FSHubApplicationResponse>>
+  Airline_pilotPointPurchase: (pilotId: number, airlineId: number, data: FSHubPilotPointPurchaseTransactionData) => Promise<FSHubResponse<FSHubPilotPointPurchaseTransactionResponse>>
+  Airline_pilotSetRank: (pilotId: number, airlineId: number, data: FSHubPilotSetRankData) => Promise<FSHubResponse<FSHubApplicationResponse>>
+  Airline_getAllRanks: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRank[]>>
+  Airline_getAllRoles: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRole[]>>
   Flight_getFlightById: (id: number) => Promise<FSHubResponse<Flight>>
   Flight_getFlightScreenshotsById: (id: number) => Promise<FSHubResponse<Screenshot[]>>
   Flight_getFlights: (options?: FSHubRequestOptions) => Promise<FSHubResponse<Flight[]>>
@@ -241,6 +247,22 @@ export type FSHubResponse<T> = {
   }
 }
 
+export type FSHubApplicationResponse = {
+  successful: boolean;
+  message: string;
+}
+
+export type FSHubPilotPointPurchaseTransactionData = {
+  amount: number;
+  summary: string;
+}
+
+export type FSHubPilotPointPurchaseTransactionResponse = {
+  successful: boolean;
+  message: string;
+  transferred: number;
+}
+
 export type FSHubError = {
   message: string
   code: number
@@ -248,4 +270,24 @@ export type FSHubError = {
   details?: {
     pilot: number
   }
+}
+
+export type FSHubPilotSetRankData = {
+  rank_id: number;
+}
+
+export type FSHubAirlineRole = {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export type FSHubAirlineRank = {
+  id: number;
+  name: string;
+  abbreviation: string;
+  min_hours: number;
+  created_at: string;
+  updated_at: string;
 }

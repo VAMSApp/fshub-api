@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import type{ Config, FSHubApi, FSHubRequestOptions } from './types';
+import type{ Config, FSHubApi, FSHubPilotPointPurchaseTransactionData, FSHubPilotSetRankData, FSHubRequestOptions } from './types';
 import { Api } from './api';
 export * from './types';
 
@@ -46,7 +46,13 @@ export default class FSHubApiClass implements FSHubApi {
         this.Airline_getAllFlightDeparturesAndArrivals = this.Airline_getAllFlightDeparturesAndArrivals.bind(this);
         this.Airline_getAllScreenshots = this.Airline_getAllScreenshots.bind(this);
         this.Airline_getStats = this.Airline_getStats.bind(this);
-
+        this.Airline_approveApplication = this.Airline_approveApplication.bind(this);
+        this.Airline_rejectApplication = this.Airline_rejectApplication.bind(this);
+        this.Airline_pilotPointPurchase = this.Airline_pilotPointPurchase.bind(this);
+        this.Airline_pilotSetRank = this.Airline_pilotSetRank.bind(this);
+        this.Airline_getAllRanks = this.Airline_getAllRanks.bind(this);
+        this.Airline_getAllRoles = this.Airline_getAllRoles.bind(this);
+        
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
         this.Flight_getFlights = this.Flight_getFlights.bind(this);
@@ -134,6 +140,30 @@ export default class FSHubApiClass implements FSHubApi {
 
     public async Airline_getStats(id: number) {
         return await Api.airline.getStats(id, this);
+    }
+
+    public async Airline_approveApplication(pilotId: number, airlineId: number) {
+        return await Api.airline.approveApplication(pilotId, airlineId, this);
+    }
+
+    public async Airline_rejectApplication(pilotId: number, airlineId: number) {
+        return await Api.airline.rejectApplication(pilotId, airlineId, this);
+    }
+
+    public async Airline_pilotPointPurchase(pilotId: number, airlineId: number, data: FSHubPilotPointPurchaseTransactionData) {
+        return await Api.airline.pilotPointPurchase(pilotId, airlineId, data, this);
+    }
+
+    public async Airline_pilotSetRank(pilotId: number, airlineId: number, data: FSHubPilotSetRankData) {
+        return await Api.airline.pilotSetRank(pilotId, airlineId, data, this);
+    }
+
+    public async Airline_getAllRanks(airlineId: number) {
+        return await Api.airline.getAllRanks(airlineId, this);
+    }
+
+    public async Airline_getAllRoles(airlineId: number) {
+        return await Api.airline.getAllRoles(airlineId, this);
     }
 
     public async Flight_getFlightById(id: number) {

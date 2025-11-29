@@ -2,7 +2,7 @@ import { describe, before } from 'mocha';
 import { expect } from 'chai';
 import FSHubApiClass from './index';
 import dotenv from 'dotenv';
-import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats  } from './types';
+import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats, FSHubApplicationResponse, FSHubPilotPointPurchaseTransactionResponse  } from './types';
 
 dotenv.config();
 let api: FSHubApi;
@@ -41,6 +41,12 @@ describe('FSHubApi()', function() {
         expect(api.Airline_getAllFlightDeparturesAndArrivals).to.be.a('function');
         expect(api.Airline_getAllScreenshots).to.be.a('function');
         expect(api.Airline_getStats).to.be.a('function');
+        expect(api.Airline_approveApplication).to.be.a('function');
+        expect(api.Airline_rejectApplication).to.be.a('function');
+        expect(api.Airline_pilotPointPurchase).to.be.a('function');
+        expect(api.Airline_pilotSetRank).to.be.a('function');
+        expect(api.Airline_getAllRanks).to.be.a('function');
+        expect(api.Airline_getAllRoles).to.be.a('function');
         expect(api.Flight_getFlightById).to.be.a('function');
         expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
         expect(api.Flight_getFlights).to.be.a('function');
@@ -204,6 +210,32 @@ describe('FSHubApi()', function() {
             const stats: FSHubResponse<AirlineStats> = await api.Airline_getStats(airline.data.id);
             
             expect(stats.data).to.be.an('Object');
+        });
+
+        // @todo: before each test, create a new application for the pilot
+        it.skip('Airline_approveApplication(pilotId, airlineId) is called, it should return a valid FSHubApplicationResponse object', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilot: FSHubResponse<Pilot> = await api.Pilot_getCurrent();
+            const response: FSHubResponse<FSHubApplicationResponse> = await api.Airline_approveApplication(pilot.data.id, airline.data.id);
+            
+            expect(response.data).to.be.an('Object');
+        });
+
+        it.skip('Airline_rejectApplication(pilotId, airlineId) is called, it should return a valid FSHubApplicationResponse object', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilot: FSHubResponse<Pilot> = await api.Pilot_getCurrent();
+            const response: FSHubResponse<FSHubApplicationResponse> = await api.Airline_rejectApplication(pilot.data.id, airline.data.id);
+            
+            expect(response.data).to.be.an('Object');
+        });
+
+        it.skip('Airline_pilotPointPurchase(pilotId, airlineId, data) is called, it should return a valid FSHubPilotPointPurchaseTransactionResponse object', async function() {
+    
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilot: FSHubResponse<Pilot> = await api.Pilot_getCurrent();
+            const response: FSHubResponse<FSHubPilotPointPurchaseTransactionResponse> = await api.Airline_pilotPointPurchase(pilot.data.id, airline.data.id, { amount: 100, summary: 'Test purchase' });
+            
+            expect(response.data).to.be.an('Object');
         });
     });
 

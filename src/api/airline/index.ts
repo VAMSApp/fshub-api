@@ -8,6 +8,12 @@ import Airline_getAllFlightsArrivals from './Airline_getAllFlightsArrivals';
 import Airline_getAllFlightDeparturesAndArrivals from './Airline_getAllFlightDeparturesAndArrivals';
 import Airline_getAllScreenshots from './Airline_getAllScreenshots';
 import Airline_getStats from './Airline_getStats';
+import Airline_approveApplication from './Airline_approveApplication';
+import Airline_rejectApplication from './Airline_rejectApplication';
+import Airline_pilotPointPurchase from './Airline_pilotPointPurchase';
+import Airline_getAllRanks from './Airline_getAllRanks';
+import Airline_getAllRoles from './Airline_getAllRoles';
+import Airline_pilotSetRank from './Airline_pilotSetRank';
 
 export const Airline = {
     getAll: Airline_getAll,
@@ -19,5 +25,11 @@ export const Airline = {
     getAllFlightsArrivals: Airline_getAllFlightsArrivals,
     getAllFlightDeparturesAndArrivals: Airline_getAllFlightDeparturesAndArrivals,
     getAllScreenshots: Airline_getAllScreenshots,
-    getStats: Airline_getStats,
+    getStats: Airline_getStats, 
+    approveApplication: Airline_approveApplication,
+    rejectApplication: Airline_rejectApplication,
+    pilotPointPurchase: Airline_pilotPointPurchase,
+    pilotSetRank: Airline_pilotSetRank,
+    getAllRanks: Airline_getAllRanks,
+    getAllRoles: Airline_getAllRoles,
 }

@@ -157,6 +157,30 @@ const arrivals = await api.Airline_getAllFlightsArrivals(6082, 'KLAX');
 const routeFlights = await api.Airline_getAllFlightDeparturesAndArrivals(6082, 'KPHX', 'KLAX');
 ```
 
+#### Get All Airline Roles
+```typescript
+// Get all Roles
+const allRoles = await api.Airline_getAllRoles();
+```
+
+#### Get All Airline Ranks
+```typescript
+// Get all Ranks
+const allRanks = await api.Airline_getAllRanks();
+```
+
+#### Set Airline Pilot Rank
+```typescript
+const rank_id = 6254 // Reef Recruit
+const pilot_id = 25097 //NDBoost
+
+const payload: FSHubPilotSetRankData = {
+  rank_id: rank_id,
+};
+
+const response: FSHubApplicationResponse = await api.Airline_Airline_pilotSetRank(pilot_id, airline_id, payload);
+```
+
 ## 🔍 Data Types
 
 The library provides comprehensive TypeScript types for all FSHub data structures:
@@ -224,6 +248,12 @@ npm run dev
 - `Airline_getAllFlightDeparturesAndArrivals(id, departureAirport, arrivalAirport)` - Get airline flights between airports
 - `Airline_getAllScreenshots(id)` - Get airline screenshots
 - `Airline_getStats(id)` - Get airline statistics
+- `Airline_approveApplication` - approve an application to join the airline
+- `Airline_rejectApplication` - reject an application to join the airline
+- `Airline_pilotPointPurchase` - exchange pilots points for airline
+- `Airline_pilotSetRank` - set a pilots rank
+- `Airline_getAllRanks` - get all airline ranks
+- `Airline_getAllRoles` -  get all airline roles
 
 ## 🤝 Contributing
 
