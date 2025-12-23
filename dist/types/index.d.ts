@@ -189,7 +189,7 @@ export type FSHubApi = {
     Airline_getAll: () => Promise<FSHubResponse<Airline[]>>;
     Airline_get: (id: number) => Promise<FSHubResponse<Airline>>;
     Airline_getPilots: (id: number) => Promise<FSHubResponse<Pilot[]>>;
-    Airline_getPilotStats: (id: number, pilotId: number) => Promise<FSHubResponse<PilotStats>>;
+    Airline_getPilotStats: (id: number, pilotId: number) => Promise<FSHubResponse<FSHubAirlinePilotStats>>;
     Airline_getFlights: (id: number) => Promise<FSHubResponse<Flight[]>>;
     Airline_getAllFlightsDepartures: (id: number, airportCode: string) => Promise<FSHubResponse<Flight[]>>;
     Airline_getAllFlightsArrivals: (id: number, airportCode: string) => Promise<FSHubResponse<Flight[]>>;
@@ -254,5 +254,55 @@ export type FSHubAirlineRank = {
     min_hours: number;
     created_at: string;
     updated_at: string;
+};
+export type FSHubAirlinePilotStats = {
+    user: FSHubAirlinePilotStatsUser;
+    points: number;
+    carry_hours: number;
+    rank: FSHubAirlinePilotStatsRank;
+    roles: FSHubAirlinePilotStatsRoles[];
+    hired_at: string;
+    discord_id: number;
+    links: FSHubAirlinePilotStatsLink[];
+};
+export type FSHubAirlinePilotStatsRoles = {
+    [key: string]: any;
+};
+export type FSHubAirlinePilotStatsUser = {
+    id: number;
+    name: string;
+    email: string;
+    profile: FSHubAirlinePilotStatsUserProfile;
+    locations: FSHubAirlinePilotStatsUserLocations;
+    handles: FSHubAirlinePilotStatsUserHandles;
+    timezone: string;
+    country: string;
+};
+export type FSHubAirlinePilotStatsUserProfile = {
+    avatar_url: string;
+    bio: string;
+};
+export type FSHubAirlinePilotStatsUserLocations = {
+    base: string;
+    locale: string;
+};
+export type FSHubAirlinePilotStatsUserHandles = {
+    website: any;
+    twitter: any;
+    facebook: any;
+    vatsim: any;
+    ivao: any;
+};
+export type FSHubAirlinePilotStatsRank = {
+    id: number;
+    name: string;
+    abbreviation: string;
+    min_hours: number;
+    created_at: string;
+    updated_at: string;
+};
+export type FSHubAirlinePilotStatsLink = {
+    rel: string;
+    uri: string;
 };
 //# sourceMappingURL=index.d.ts.map
