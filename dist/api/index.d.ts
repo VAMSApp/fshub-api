@@ -35,5 +35,9 @@ export declare const Api: {
         getFlightScreenshotsById: typeof import("./flight/Flight_getFlightScreenshotsById").default;
         getFlights: typeof import("./flight/Flight_getFlights").default;
     };
+    airport: {
+        findByICAO: typeof import("./airport/Airport_findByICAO").default;
+        findMETAR: typeof import("./airport/Airport_findMETAR").default;
+    };
 };
 //# sourceMappingURL=index.d.ts.map

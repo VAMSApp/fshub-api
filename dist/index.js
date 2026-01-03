@@ -108,6 +108,8 @@ var FSHubApiClass = /** @class */ (function () {
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
         this.Flight_getFlights = this.Flight_getFlights.bind(this);
+        this.Airport_findByICAO = this.Airport_findByICAO.bind(this);
+        this.Airport_findMETAR = this.Airport_findMETAR.bind(this);
     }
     FSHubApiClass.prototype.Pilot_getCurrent = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -404,6 +406,26 @@ var FSHubApiClass = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, api_1.Api.flight.getFlights(this, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airport_findByICAO = function (icao) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airport.findByICAO(icao, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airport_findMETAR = function (icao) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airport.findMETAR(icao, this)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
