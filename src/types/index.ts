@@ -1,351 +1,62 @@
-import { AxiosInstance } from 'axios';
-
 /**
- * FSHub API Types and type= s
+ * FSHub API Types and types
+ * 
+ * All types are exported from individual files for better organization.
  */
 
-export type Config = {
-  baseURL?: string;
-  apiKey?: string;
-  timeout?: number;
-  headers?: Record<string, string>;
-};
+// Config
+export type { Config } from './Config';
 
-export type CurrentPilot = Pilot & {
-  discord_id?: number
-}
+// Common types
+export type { Link, Gps, Handles } from './Common';
 
-export type Pilot = {
-  id: number
-  name: string
-  base: string
-  locale: string
-  gps: Gps
-  is_online: boolean
-  online_at: string
-  bio?: string
-  handles?: Handles
-  timezone?: string
-  country?: string
-  created_at?: string
-  links?: Link[]
-}
+// Pilot types
+export type { Pilot, CurrentPilot } from './Pilot';
 
-export type Handles = {
-  facebook: any
-  twitter: string
-  website: any
-  vatsim: string
-  ivao: string
-}
+// Flight types
+export type { 
+  Flight, 
+  User, 
+  Aircraft, 
+  UserConf, 
+  Distance, 
+  Average, 
+  Max, 
+  Geo, 
+  Hdg, 
+  Spd, 
+  Wind, 
+  Airport 
+} from './Flight';
 
-export type Link = {
-  rel: string
-  uri: string
-}
+// Airline types
+export type { Airline, Owner } from './Airline';
 
-export type Gps = {
-  lat: number
-  lng: number
-}
+// Stats types
+export type { PilotStats, AirlineStats, PilotStat } from './Stats';
 
-export type Flight = {
-  id: number
-  user: User
-  airline: Airline
-  schedule_status: any
-  aircraft: Aircraft
-  plan: any
-  fuel_used: number
-  landing_rate: number
-  distance: Distance
-  average: Average
-  max: Max
-  time: number
-  tags: any[]
-  flags: any[]
-  points: number
-  departure: Airport
-  arrival: Airport
-  links: Link[]
-}
+// Screenshot types
+export type { Screenshot, Urls } from './Screenshot';
 
-export type Airline = {
-  id: number
-  name: string
-  abbr: string
-  owner: Owner
-  handles: Handles
-  links: Link[]
-}
-
-export type Owner = {
-  id: number
-  name: string
-  bio: any
-  handles: Handles
-  base: string
-  locale: string
-  gps: Gps
-  timezone: string
-  country: string
-  is_online: boolean
-  online_at: string
-  created_at: string
-  links: Link[]
-}
-
-export type User = {
-  id: number
-  name: string
-}
-
-export type Aircraft = {
-  icao: string
-  icao_name: string
-  name: string
-  type: string
-  user_conf: UserConf
-}
-
-export type UserConf = {
-  tail: string
-  icao: string
-}
-
-export type Distance = {
-  nm: number
-  km: number
-}
-
-export type Average = {
-  spd: number
-}
-
-export type Max = {
-  alt: number
-  spd: number
-}
-
-export type Geo = {
-  lat: number
-  lng: number
-}
-
-export type Hdg = {
-  mag: number
-  true: number
-}
-
-export type Spd = {
-  tas: number
-}
-
-export type Wind = {
-  spd: number
-  dir: number
-}
-
-export type Airport = {
-  icao: string
-  iata: string
-  name: string
-  time: string
-  geo: Geo
-  hdg: Hdg
-  spd: Spd
-  fuel: number
-  pitch: number
-  bank: number
-  wind: Wind
-}
-
-export type PilotStats = {
-  id: number
-  all_time: PilotStat
-  month: PilotStat
-  links: Link[]
-}
-
-export type AirlineStats = {
-  id: number
-  total_pilots: number
-  all_time: PilotStat
-  month: PilotStat
-  links: Link[]
-}
-
-export type PilotStat = {
-  total_flights: number
-  total_hours: number
-  total_distance: number
-  average_landing: number
-}
-
-export type Screenshot = {
-  id: number
-  name: string
-  desc: any
-  urls: Urls
-  created_at: string
-  links: Link[]
-}
-
-export type Urls = {
-  fullsize: string
-  thumbnail: string
-}
-
-export type FSHubRequestOptions = {
-  cursor?: number;
-  limit?: number;
-}
-
-export type FSHubApi = {
-  axios: AxiosInstance
-  Pilot_getCurrent: () => Promise<FSHubResponse<CurrentPilot>>
-  Pilot_getAll: () => Promise<FSHubResponse<Pilot[]>>
-  Pilot_get: (id: number) => Promise<FSHubResponse<Pilot>>
-  Pilot_getLatestFlight: (id: number) => Promise<FSHubResponse<Flight>>
-  Pilot_getAllFlights: (id: number) => Promise<FSHubResponse<Flight[]>>
-  Pilot_getAllAirlines: (id: number) => Promise<FSHubResponse<Airline[]>>
-  Pilot_getStats: (id: number) => Promise<FSHubResponse<PilotStats>>
-  Pilot_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Pilot_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Pilot_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Pilot_getAllScreenshots: (id: number) => Promise<FSHubResponse<Screenshot[]>>
-  Airline_getAll: () => Promise<FSHubResponse<Airline[]>>
-  Airline_get: (id: number) => Promise<FSHubResponse<Airline>>
-  Airline_getPilots: (id: number) => Promise<FSHubResponse<Pilot[]>>
-  Airline_getPilotStats: (id: number, pilotId: number) => Promise<FSHubResponse<FSHubAirlinePilotStats>>
-  Airline_getFlights: (id: number) => Promise<FSHubResponse<Flight[]>>
-  Airline_getAllFlightsDepartures:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Airline_getAllFlightsArrivals:(id:number, airportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Airline_getAllFlightDeparturesAndArrivals:(id:number, departureAirportCode:string, arrivalAirportCode:string) => Promise<FSHubResponse<Flight[]>>
-  Airline_getAllScreenshots: (id: number) => Promise<FSHubResponse<Screenshot[]>>
-  Airline_getStats: (id: number) => Promise<FSHubResponse<AirlineStats>>
-  Airline_approveApplication: (pilotId: number, airlineId: number) => Promise<FSHubResponse<FSHubApplicationResponse>>
-  Airline_rejectApplication: (pilotId: number, airlineId: number) => Promise<FSHubResponse<FSHubApplicationResponse>>
-  Airline_pilotPointPurchase: (pilotId: number, airlineId: number, data: FSHubPilotPointPurchaseTransactionData) => Promise<FSHubResponse<FSHubPilotPointPurchaseTransactionResponse>>
-  Airline_pilotSetRank: (pilotId: number, airlineId: number, data: FSHubPilotSetRankData) => Promise<FSHubResponse<FSHubApplicationResponse>>
-  Airline_getAllRanks: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRank[]>>
-  Airline_getAllRoles: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRole[]>>
-  Flight_getFlightById: (id: number) => Promise<FSHubResponse<Flight>>
-  Flight_getFlightScreenshotsById: (id: number) => Promise<FSHubResponse<Screenshot[]>>
-  Flight_getFlights: (options?: FSHubRequestOptions) => Promise<FSHubResponse<Flight[]>>
-}
-
-export type FSHubResponse<T> = {
-  data: T
-  meta?: {
-    cursor: {
-      current: number
-      prev: number
-      next: number
-      count: number
-    }
-  }
-}
-
-export type FSHubApplicationResponse = {
-  successful: boolean;
-  message: string;
-}
-
-export type FSHubPilotPointPurchaseTransactionData = {
-  amount: number;
-  summary: string;
-}
-
-export type FSHubPilotPointPurchaseTransactionResponse = {
-  successful: boolean;
-  message: string;
-  transferred: number;
-}
-
-export type FSHubError = {
-  message: string
-  code: number
-  error?: boolean
-  details?: {
-    pilot: number
-  }
-}
-
-export type FSHubPilotSetRankData = {
-  rank_id: number;
-}
-
-export type FSHubAirlineRole = {
-  id: number;
-  name: string;
-  created_at: string;
-  updated_at: string;
-}
-
-export type FSHubAirlineRank = {
-  id: number;
-  name: string;
-  abbreviation: string;
-  min_hours: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export type FSHubAirlinePilotStats = {
-  user: FSHubAirlinePilotStatsUser
-  points: number
-  carry_hours: number
-  rank: FSHubAirlinePilotStatsRank
-  roles: FSHubAirlinePilotStatsRoles[]
-  hired_at: string
-  discord_id: number
-  links: FSHubAirlinePilotStatsLink[]
-}
-
-export type FSHubAirlinePilotStatsRoles = {
-  [key: string]: any; // TODO: Add proper type
-}
-
-export type FSHubAirlinePilotStatsUser = {
-  id: number
-  name: string
-  email: string
-  profile: FSHubAirlinePilotStatsUserProfile
-  locations: FSHubAirlinePilotStatsUserLocations
-  handles: FSHubAirlinePilotStatsUserHandles
-  timezone: string
-  country: string
-}
-
-export type FSHubAirlinePilotStatsUserProfile = {
-  avatar_url: string
-  bio: string
-}
-
-export type FSHubAirlinePilotStatsUserLocations = {
-  base: string
-  locale: string
-}
-
-export type FSHubAirlinePilotStatsUserHandles = {
-  website: any
-  twitter: any
-  facebook: any
-  vatsim: any
-  ivao: any
-}
-
-export type FSHubAirlinePilotStatsRank = {
-  id: number
-  name: string
-  abbreviation: string
-  min_hours: number
-  created_at: string
-  updated_at: string
-}
-
-export type FSHubAirlinePilotStatsLink = {
-  rel: string
-  uri: string
-}
+// FSHub API types
+export type { FSHubApi } from './FSHubApi';
+export type { FSHubRequestOptions } from './FSHubRequestOptions';
+export type { FSHubResponse } from './FSHubResponse';
+export type { FSHubError } from './FSHubError';
+export type { FSHubApplicationResponse, FSHubPilotSetRankData } from './FSHubApplication';
+export type { 
+  FSHubPilotPointPurchaseTransactionData, 
+  FSHubPilotPointPurchaseTransactionResponse 
+} from './FSHubPilotPointPurchase';
+export type { 
+  FSHubAirlineRole, 
+  FSHubAirlineRank, 
+  FSHubAirlinePilotStats,
+  FSHubAirlinePilotStatsRoles,
+  FSHubAirlinePilotStatsUser,
+  FSHubAirlinePilotStatsUserProfile,
+  FSHubAirlinePilotStatsUserLocations,
+  FSHubAirlinePilotStatsUserHandles,
+  FSHubAirlinePilotStatsRank,
+  FSHubAirlinePilotStatsLink
+} from './FSHubAirline';

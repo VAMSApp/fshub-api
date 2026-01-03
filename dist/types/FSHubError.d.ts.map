@@ -1,0 +1,1 @@
+{"version":3,"file":"FSHubError.d.ts","sourceRoot":"","sources":["../../src/types/FSHubError.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,UAAU,GAAG;IACvB,OAAO,EAAE,MAAM,CAAA;IACf,IAAI,EAAE,MAAM,CAAA;IACZ,KAAK,CAAC,EAAE,OAAO,CAAA;IACf,OAAO,CAAC,EAAE;QACR,KAAK,EAAE,MAAM,CAAA;KACd,CAAA;CACF,CAAA"}
