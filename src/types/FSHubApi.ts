@@ -14,6 +14,8 @@ import { FSHubPilotSetRankData } from './FSHubApplication';
 import { FSHubAirlineRank } from './FSHubAirline';
 import { FSHubAirlineRole } from './FSHubAirline';
 import { FSHubAirlinePilotStats } from './FSHubAirline';
+import { AirportMETARReport } from './AirportMETARReport';
+import { Airport } from './Airport';
 
 export type FSHubApi = {
   axios: AxiosInstance
@@ -47,4 +49,6 @@ export type FSHubApi = {
   Flight_getFlightById: (id: number) => Promise<FSHubResponse<Flight>>
   Flight_getFlightScreenshotsById: (id: number) => Promise<FSHubResponse<Screenshot[]>>
   Flight_getFlights: (options?: FSHubRequestOptions) => Promise<FSHubResponse<Flight[]>>
+  Airport_findByICAO: (icao: string) => Promise<FSHubResponse<Airport>>
+  Airport_findMETAR: (icao: string) => Promise<FSHubResponse<AirportMETARReport>>
 }

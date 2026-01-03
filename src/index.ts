@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import type{ Config, FSHubApi, FSHubPilotPointPurchaseTransactionData, FSHubPilotSetRankData, FSHubRequestOptions } from './types';
+import type{ Airport, Config, FSHubApi, FSHubPilotPointPurchaseTransactionData, FSHubPilotSetRankData, FSHubRequestOptions, FSHubResponse } from './types';
 import { Api } from './api';
 export * from './types';
 
@@ -56,6 +56,9 @@ export default class FSHubApiClass implements FSHubApi {
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
         this.Flight_getFlights = this.Flight_getFlights.bind(this);
+
+        this.Airport_findByICAO = this.Airport_findByICAO.bind(this);
+        this.Airport_findMETAR = this.Airport_findMETAR.bind(this);
     }
 
     public async Pilot_getCurrent() {
@@ -176,5 +179,13 @@ export default class FSHubApiClass implements FSHubApi {
 
     public async Flight_getFlights(options?: FSHubRequestOptions) {
         return await Api.flight.getFlights(this, options);
+    }
+
+    public async Airport_findByICAO(icao: string): Promise<FSHubResponse<Airport>> {
+        return await Api.airport.findByICAO(icao, this);
+    }
+
+    public async Airport_findMETAR(icao: string) {
+        return await Api.airport.findMETAR(icao, this);
     }
 }

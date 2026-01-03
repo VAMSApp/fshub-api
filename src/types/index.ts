@@ -26,7 +26,6 @@ export type {
   Hdg, 
   Spd, 
   Wind, 
-  Airport 
 } from './Flight';
 
 // Airline types
@@ -60,3 +59,8 @@ export type {
   FSHubAirlinePilotStatsRank,
   FSHubAirlinePilotStatsLink
 } from './FSHubAirline';
+
+// Airport types
+export type { Airport } from './Airport';
+
+export type { AirportMETARReport, AirportMETAR } from './AirportMETARReport';

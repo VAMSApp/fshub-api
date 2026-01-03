@@ -2,7 +2,7 @@ import { describe, before } from 'mocha';
 import { expect } from 'chai';
 import FSHubApiClass from './index';
 import dotenv from 'dotenv';
-import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats, FSHubApplicationResponse, FSHubPilotPointPurchaseTransactionResponse  } from './types';
+import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats, FSHubApplicationResponse, FSHubPilotPointPurchaseTransactionResponse, Airport, AirportMETARReport, FSHubAirlinePilotStats  } from './types';
 
 dotenv.config();
 let api: FSHubApi;
@@ -31,6 +31,7 @@ describe('FSHubApi()', function() {
         expect(api.Pilot_getAllFlightsArrivals).to.be.a('function');
         expect(api.Pilot_getAllFlightDeparturesAndArrivals).to.be.a('function');
         expect(api.Pilot_getAllScreenshots).to.be.a('function');
+
         expect(api.Airline_getAll).to.be.a('function');
         expect(api.Airline_get).to.be.a('function');
         expect(api.Airline_getPilots).to.be.a('function');
@@ -47,9 +48,13 @@ describe('FSHubApi()', function() {
         expect(api.Airline_pilotSetRank).to.be.a('function');
         expect(api.Airline_getAllRanks).to.be.a('function');
         expect(api.Airline_getAllRoles).to.be.a('function');
+
         expect(api.Flight_getFlightById).to.be.a('function');
         expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
         expect(api.Flight_getFlights).to.be.a('function');
+
+        expect(api.Airport_findByICAO).to.be.a('function');
+        expect(api.Airport_findMETAR).to.be.a('function');
     });
 
     describe('Pilot', function() {
@@ -165,7 +170,7 @@ describe('FSHubApi()', function() {
         it('Airline_getPilotStats(id, pilotId) is called, it should return a valid PilotStats object', async function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const pilot: FSHubResponse<Pilot> = await api.Pilot_getCurrent();
-            const stats: FSHubResponse<PilotStats> = await api.Airline_getPilotStats(airline.data.id, pilot.data.id);
+            const stats: FSHubResponse<FSHubAirlinePilotStats> = await api.Airline_getPilotStats(airline.data.id, pilot.data.id);
             
             expect(stats.data).to.be.an('Object');
         });
@@ -276,6 +281,24 @@ describe('FSHubApi()', function() {
                 
                 expect(flights.data).to.be.an('Array');
                 expect(flights.data.length).to.be.equal(100);
+            });
+        });
+    });
+
+    describe('Airport', function() {
+        describe('Airport_findByICAO(icao)', function() {
+            it('Airport_findByICAO(icao) is called, it should return a valid Airport object', async function() {
+                const airport: FSHubResponse<Airport> = await api.Airport_findByICAO('KPHX');
+
+                expect(airport.data).to.be.an('Object');
+            });
+        });
+
+        describe('Airport_findMETAR(icao)', function() {
+            it('Airport_findMETAR(icao) is called, it should return a valid AirportMETARReport object', async function() {
+                const airportMETARReport: FSHubResponse<AirportMETARReport> = await api.Airport_findMETAR('KPHX');
+                
+                expect(airportMETARReport.data).to.be.an('Object');
             });
         });
     });
