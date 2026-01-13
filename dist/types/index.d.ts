@@ -19,4 +19,5 @@ export type { FSHubPilotPointPurchaseTransactionData, FSHubPilotPointPurchaseTra
 export type { FSHubAirlineRole, FSHubAirlineRank, FSHubAirlinePilotStats, FSHubAirlinePilotStatsRoles, FSHubAirlinePilotStatsUser, FSHubAirlinePilotStatsUserProfile, FSHubAirlinePilotStatsUserLocations, FSHubAirlinePilotStatsUserHandles, FSHubAirlinePilotStatsRank, FSHubAirlinePilotStatsLink } from './FSHubAirline';
 export type { Airport } from './Airport';
 export type { AirportMETARReport, AirportMETAR } from './AirportMETARReport';
+export type { AirlineRoute, AirlineRouteAirport, AirlineRouteDepartureAirport, AirlineRouteArrivalAirport, AirlineRouteLocale, AirlineRouteGps, AirlineRouteLog, AirlineRouteLink } from './AirlineRoute';
 //# sourceMappingURL=index.d.ts.map

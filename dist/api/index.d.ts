@@ -29,6 +29,7 @@ export declare const Api: {
         pilotSetRank: typeof import("./airline/Airline_pilotSetRank").default;
         getAllRanks: typeof import("./airline/Airline_getAllRanks").default;
         getAllRoles: typeof import("./airline/Airline_getAllRoles").default;
+        getAllRoutes: typeof import("./airline/Airline_getAllRoutes").default;
     };
     flight: {
         getFlightById: typeof import("./flight/Flight_getFlightById").default;

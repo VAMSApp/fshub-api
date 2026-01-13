@@ -16,6 +16,7 @@ import { FSHubAirlineRole } from './FSHubAirline';
 import { FSHubAirlinePilotStats } from './FSHubAirline';
 import { AirportMETARReport } from './AirportMETARReport';
 import { Airport } from './Airport';
+import { AirlineRoute } from './AirlineRoute';
 export type FSHubApi = {
     axios: AxiosInstance;
     Pilot_getCurrent: () => Promise<FSHubResponse<CurrentPilot>>;
@@ -45,6 +46,7 @@ export type FSHubApi = {
     Airline_pilotSetRank: (pilotId: number, airlineId: number, data: FSHubPilotSetRankData) => Promise<FSHubResponse<FSHubApplicationResponse>>;
     Airline_getAllRanks: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRank[]>>;
     Airline_getAllRoles: (airlineId: number) => Promise<FSHubResponse<FSHubAirlineRole[]>>;
+    Airline_getAllRoutes: (airlineId: number) => Promise<FSHubResponse<AirlineRoute[]>>;
     Flight_getFlightById: (id: number) => Promise<FSHubResponse<Flight>>;
     Flight_getFlightScreenshotsById: (id: number) => Promise<FSHubResponse<Screenshot[]>>;
     Flight_getFlights: (options?: FSHubRequestOptions) => Promise<FSHubResponse<Flight[]>>;
