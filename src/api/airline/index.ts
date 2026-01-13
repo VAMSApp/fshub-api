@@ -14,6 +14,7 @@ import Airline_pilotPointPurchase from './Airline_pilotPointPurchase';
 import Airline_getAllRanks from './Airline_getAllRanks';
 import Airline_getAllRoles from './Airline_getAllRoles';
 import Airline_pilotSetRank from './Airline_pilotSetRank';
+import Airline_getAllRoutes from './Airline_getAllRoutes';
 
 export const Airline = {
     getAll: Airline_getAll,
@@ -32,4 +33,5 @@ export const Airline = {
     pilotSetRank: Airline_pilotSetRank,
     getAllRanks: Airline_getAllRanks,
     getAllRoles: Airline_getAllRoles,
+    getAllRoutes: Airline_getAllRoutes,
 }

@@ -64,3 +64,5 @@ export type {
 export type { Airport } from './Airport';
 
 export type { AirportMETARReport, AirportMETAR } from './AirportMETARReport';
+
+export type { AirlineRoute, AirlineRouteAirport, AirlineRouteDepartureAirport, AirlineRouteArrivalAirport, AirlineRouteLocale, AirlineRouteGps, AirlineRouteLog, AirlineRouteLink } from './AirlineRoute';

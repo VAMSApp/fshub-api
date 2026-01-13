@@ -2,7 +2,7 @@ import { describe, before } from 'mocha';
 import { expect } from 'chai';
 import FSHubApiClass from './index';
 import dotenv from 'dotenv';
-import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats, FSHubApplicationResponse, FSHubPilotPointPurchaseTransactionResponse, Airport, AirportMETARReport, FSHubAirlinePilotStats  } from './types';
+import { CurrentPilot, Flight, Pilot, FSHubApi, Airline, PilotStats, Screenshot, FSHubResponse, AirlineStats, FSHubApplicationResponse, FSHubPilotPointPurchaseTransactionResponse, Airport, AirportMETARReport, FSHubAirlinePilotStats, AirlineRoute  } from './types';
 
 dotenv.config();
 let api: FSHubApi;
@@ -48,6 +48,7 @@ describe('FSHubApi()', function() {
         expect(api.Airline_pilotSetRank).to.be.a('function');
         expect(api.Airline_getAllRanks).to.be.a('function');
         expect(api.Airline_getAllRoles).to.be.a('function');
+        expect(api.Airline_getAllRoutes).to.be.a('function');
 
         expect(api.Flight_getFlightById).to.be.a('function');
         expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
@@ -241,6 +242,13 @@ describe('FSHubApi()', function() {
             const response: FSHubResponse<FSHubPilotPointPurchaseTransactionResponse> = await api.Airline_pilotPointPurchase(pilot.data.id, airline.data.id, { amount: 100, summary: 'Test purchase' });
             
             expect(response.data).to.be.an('Object');
+        });
+
+        it('Airline_getAllRoutes(id) is called, it should return an array of valid AirlineRoute objects', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const routes: FSHubResponse<AirlineRoute[]> = await api.Airline_getAllRoutes(airline.data.id);
+            
+            expect(routes.data).to.be.an('Array');
         });
     });
 
