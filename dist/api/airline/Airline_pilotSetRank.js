@@ -44,7 +44,7 @@ function Airline_pilotSetRank(pilotId, airlineId, data, api) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = "airline/".concat(airlineId, "/application/").concat(pilotId, "/rank");
+                    url = "airline/".concat(airlineId, "/pilot/").concat(pilotId, "/rank");
                     return [4 /*yield*/, (0, FSHubApiRequest_1.FSHubApiPutRequest)(url, api, data)];
                 case 1:
                     response = _a.sent();
