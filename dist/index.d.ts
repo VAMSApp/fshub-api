@@ -33,6 +33,8 @@ export default class FSHubApiClass implements FSHubApi {
     Airline_getAllRanks(airlineId: number): Promise<FSHubResponse<import("./types").FSHubAirlineRank[]>>;
     Airline_getAllRoles(airlineId: number): Promise<FSHubResponse<import("./types").FSHubAirlineRole[]>>;
     Airline_getAllRoutes(airlineId: number): Promise<FSHubResponse<import("./types").AirlineRoute[]>>;
+    Airline_approveManualPIREP(airlineId: number, flightId: number): Promise<FSHubResponse<import("./types").FSHubApplicationResponse>>;
+    Airline_rejectManualPIREP(airlineId: number, flightId: number): Promise<FSHubResponse<import("./types").FSHubApplicationResponse>>;
     Flight_getFlightById(id: number): Promise<FSHubResponse<import("./types").Flight>>;
     Flight_getFlightScreenshotsById(id: number): Promise<FSHubResponse<import("./types").Screenshot[]>>;
     Flight_getFlights(options?: FSHubRequestOptions): Promise<FSHubResponse<import("./types").Flight[]>>;

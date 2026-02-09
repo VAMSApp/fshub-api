@@ -21,6 +21,8 @@ var Airline_getAllRanks_1 = __importDefault(require("./Airline_getAllRanks"));
 var Airline_getAllRoles_1 = __importDefault(require("./Airline_getAllRoles"));
 var Airline_pilotSetRank_1 = __importDefault(require("./Airline_pilotSetRank"));
 var Airline_getAllRoutes_1 = __importDefault(require("./Airline_getAllRoutes"));
+var Airline_approveManualPIREP_1 = __importDefault(require("./Airline_approveManualPIREP"));
+var Airline_rejectManualPIREP_1 = __importDefault(require("./Airline_rejectManualPIREP"));
 exports.Airline = {
     getAll: Airline_getAll_1.default,
     get: Airline_get_1.default,
@@ -39,5 +41,7 @@ exports.Airline = {
     getAllRanks: Airline_getAllRanks_1.default,
     getAllRoles: Airline_getAllRoles_1.default,
     getAllRoutes: Airline_getAllRoutes_1.default,
+    approveManualPIREP: Airline_approveManualPIREP_1.default,
+    rejectManualPIREP: Airline_rejectManualPIREP_1.default,
 };
 //# sourceMappingURL=index.js.map

@@ -15,6 +15,8 @@ import Airline_getAllRanks from './Airline_getAllRanks';
 import Airline_getAllRoles from './Airline_getAllRoles';
 import Airline_pilotSetRank from './Airline_pilotSetRank';
 import Airline_getAllRoutes from './Airline_getAllRoutes';
+import Airline_approveManualPIREP from './Airline_approveManualPIREP';
+import Airline_rejectManualPIREP from './Airline_rejectManualPIREP';
 export declare const Airline: {
     getAll: typeof Airline_getAll;
     get: typeof Airline_get;
@@ -33,5 +35,7 @@ export declare const Airline: {
     getAllRanks: typeof Airline_getAllRanks;
     getAllRoles: typeof Airline_getAllRoles;
     getAllRoutes: typeof Airline_getAllRoutes;
+    approveManualPIREP: typeof Airline_approveManualPIREP;
+    rejectManualPIREP: typeof Airline_rejectManualPIREP;
 };
 //# sourceMappingURL=index.d.ts.map

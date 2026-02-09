@@ -106,6 +106,8 @@ var FSHubApiClass = /** @class */ (function () {
         this.Airline_getAllRanks = this.Airline_getAllRanks.bind(this);
         this.Airline_getAllRoles = this.Airline_getAllRoles.bind(this);
         this.Airline_getAllRoutes = this.Airline_getAllRoutes.bind(this);
+        this.Airline_approveManualPIREP = this.Airline_approveManualPIREP.bind(this);
+        this.Airline_rejectManualPIREP = this.Airline_rejectManualPIREP.bind(this);
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
         this.Flight_getFlights = this.Flight_getFlights.bind(this);
@@ -387,6 +389,26 @@ var FSHubApiClass = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, api_1.Api.airline.getAllRoutes(airlineId, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_approveManualPIREP = function (airlineId, flightId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.approveManualPIREP(airlineId, flightId, this)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    FSHubApiClass.prototype.Airline_rejectManualPIREP = function (airlineId, flightId) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, api_1.Api.airline.rejectManualPIREP(airlineId, flightId, this)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
