@@ -49,6 +49,8 @@ describe('FSHubApi()', function() {
         expect(api.Airline_getAllRanks).to.be.a('function');
         expect(api.Airline_getAllRoles).to.be.a('function');
         expect(api.Airline_getAllRoutes).to.be.a('function');
+        expect(api.Airline_approveManualPIREP).to.be.a('function');
+        expect(api.Airline_rejectManualPIREP).to.be.a('function');
 
         expect(api.Flight_getFlightById).to.be.a('function');
         expect(api.Flight_getFlightScreenshotsById).to.be.a('function');
@@ -249,6 +251,22 @@ describe('FSHubApi()', function() {
             const routes: FSHubResponse<AirlineRoute[]> = await api.Airline_getAllRoutes(airline.data.id);
             
             expect(routes.data).to.be.an('Array');
+        });
+
+        it.skip('Airline_approveManualPIREP(airlineId, flightId) is called, it should return a valid FSHubApplicationResponse object', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flight: FSHubResponse<Flight> = await api.Flight_getFlightById(4009359);
+            const response: FSHubResponse<FSHubApplicationResponse> = await api.Airline_approveManualPIREP(airline.data.id, flight.data.id);
+            
+            expect(response.data).to.be.an('Object');
+        });
+        
+        it.skip('Airline_rejectManualPIREP(airlineId, flightId) is called, it should return a valid FSHubApplicationResponse object', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flight: FSHubResponse<Flight> = await api.Flight_getFlightById(4009359);
+            const response: FSHubResponse<FSHubApplicationResponse> = await api.Airline_rejectManualPIREP(airline.data.id, flight.data.id);
+            
+            expect(response.data).to.be.an('Object');
         });
     });
 

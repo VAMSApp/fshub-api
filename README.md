@@ -178,7 +178,19 @@ const payload: FSHubPilotSetRankData = {
   rank_id: rank_id,
 };
 
-const response: FSHubApplicationResponse = await api.Airline_Airline_pilotSetRank(pilot_id, airline_id, payload);
+const response: FSHubApplicationResponse = await api.Airline_pilotSetRank(pilot_id, airline_id, payload);
+```
+
+#### Approve Manual PIREP
+```typescript
+const flight_id = 4351163;
+const response: FSHubApplicationResponse = await api.Airline_approveManualPIREP(airline_id, flight_id);
+```
+
+#### Reject Manual PIREP
+```typescript
+const flight_id = 4351163;
+const response: FSHubApplicationResponse = await api.Airline_rejectManualPIREP(airline_id, flight_id);
 ```
 
 ## 🔍 Data Types
@@ -254,6 +266,8 @@ npm run dev
 - `Airline_pilotSetRank` - set a pilots rank
 - `Airline_getAllRanks` - get all airline ranks
 - `Airline_getAllRoles` -  get all airline roles
+- `Airline_approveManualPIREP` - approve a member pilot submitted manual PIREP
+- `Airline_rejectManualPIREP` - reject a member pilot submitted manual PIREP
 
 ## 🤝 Contributing
 

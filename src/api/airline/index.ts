@@ -15,6 +15,8 @@ import Airline_getAllRanks from './Airline_getAllRanks';
 import Airline_getAllRoles from './Airline_getAllRoles';
 import Airline_pilotSetRank from './Airline_pilotSetRank';
 import Airline_getAllRoutes from './Airline_getAllRoutes';
+import Airline_approveManualPIREP from './Airline_approveManualPIREP';
+import Airline_rejectManualPIREP from './Airline_rejectManualPIREP';
 
 export const Airline = {
     getAll: Airline_getAll,
@@ -34,4 +36,6 @@ export const Airline = {
     getAllRanks: Airline_getAllRanks,
     getAllRoles: Airline_getAllRoles,
     getAllRoutes: Airline_getAllRoutes,
+    approveManualPIREP: Airline_approveManualPIREP,
+    rejectManualPIREP: Airline_rejectManualPIREP,
 }

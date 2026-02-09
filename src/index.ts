@@ -53,6 +53,8 @@ export default class FSHubApiClass implements FSHubApi {
         this.Airline_getAllRanks = this.Airline_getAllRanks.bind(this);
         this.Airline_getAllRoles = this.Airline_getAllRoles.bind(this);
         this.Airline_getAllRoutes = this.Airline_getAllRoutes.bind(this);
+        this.Airline_approveManualPIREP = this.Airline_approveManualPIREP.bind(this);
+        this.Airline_rejectManualPIREP = this.Airline_rejectManualPIREP.bind(this);
 
         this.Flight_getFlightById = this.Flight_getFlightById.bind(this);
         this.Flight_getFlightScreenshotsById = this.Flight_getFlightScreenshotsById.bind(this);
@@ -172,6 +174,14 @@ export default class FSHubApiClass implements FSHubApi {
 
     public async Airline_getAllRoutes(airlineId: number) {
         return await Api.airline.getAllRoutes(airlineId, this);
+    }
+
+    public async Airline_approveManualPIREP(airlineId: number, flightId: number) {
+        return await Api.airline.approveManualPIREP(airlineId, flightId, this);
+    }
+
+    public async Airline_rejectManualPIREP(airlineId: number, flightId: number) {
+        return await Api.airline.rejectManualPIREP(airlineId, flightId, this);
     }
 
     public async Flight_getFlightById(id: number) {
