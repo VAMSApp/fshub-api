@@ -68,8 +68,8 @@ export default class FSHubApiClass implements FSHubApi {
         return await Api.pilot.getCurrent(this);
     }
 
-    public async Pilot_getAll() {
-        return await Api.pilot.getAll(this);
+    public async Pilot_getAll(options?: FSHubRequestOptions) {
+        return await Api.pilot.getAll(this, options);
     }
 
     public async Pilot_get(id: number) {
@@ -80,68 +80,68 @@ export default class FSHubApiClass implements FSHubApi {
         return await Api.pilot.getLatestFlight(id, this);
     }
 
-    public async Pilot_getAllFlights(id: number) {
-        return await Api.pilot.getAllFlights(id, this);
+    public async Pilot_getAllFlights(id: number, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllFlights(id, this, options);
     }
 
-    public async Pilot_getAllAirlines(id: number) {
-        return await Api.pilot.getAllAirlines(id, this);
+    public async Pilot_getAllAirlines(id: number, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllAirlines(id, this, options);
     }
 
     public async Pilot_getStats(id: number) {
         return await Api.pilot.getStats(id, this);
     }
 
-    public async Pilot_getAllFlightsDepartures(id: number, airportCode: string) {
-        return await Api.pilot.getAllFlightsDepartures(id, airportCode, this);
+    public async Pilot_getAllFlightsDepartures(id: number, airportCode: string, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllFlightsDepartures(id, airportCode, this, options);
     }
 
-    public async Pilot_getAllFlightsArrivals(id: number, airportCode: string) {
-        return await Api.pilot.getAllFlightsArrivals(id, airportCode, this);
+    public async Pilot_getAllFlightsArrivals(id: number, airportCode: string, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllFlightsArrivals(id, airportCode, this, options);
     }
 
-    public async Pilot_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string) {
-        return await Api.pilot.getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode, this);
+    public async Pilot_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode, this, options);
     }
 
-    public async Pilot_getAllScreenshots(id: number) {
-        return await Api.pilot.getAllScreenshots(id, this);
+    public async Pilot_getAllScreenshots(id: number, options?: FSHubRequestOptions) {
+        return await Api.pilot.getAllScreenshots(id, this, options);
     }
 
-    public async Airline_getAll() {
-        return await Api.airline.getAll(this);
+    public async Airline_getAll(options?: FSHubRequestOptions) {
+        return await Api.airline.getAll(this, options);
     }
 
     public async Airline_get(id: number) {
         return await Api.airline.get(id, this);
     }
 
-    public async Airline_getPilots(id: number) {
-        return await Api.airline.getPilots(id, this);
+    public async Airline_getPilots(id: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getPilots(id, this, options);
     }
 
     public async Airline_getPilotStats(id: number, pilotId: number) {
         return await Api.airline.getPilotStats(id, pilotId, this);
     }
 
-    public async Airline_getFlights(id: number) {
-        return await Api.airline.getFlights(id, this);
+    public async Airline_getFlights(id: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getFlights(id, this, options);
     }
 
-    public async Airline_getAllFlightsDepartures(id: number, airportCode: string) {
-        return await Api.airline.getAllFlightsDepartures(id, airportCode, this);
+    public async Airline_getAllFlightsDepartures(id: number, airportCode: string, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllFlightsDepartures(id, airportCode, this, options);
     }
 
-    public async Airline_getAllFlightsArrivals(id: number, airportCode: string) {
-        return await Api.airline.getAllFlightsArrivals(id, airportCode, this);
+    public async Airline_getAllFlightsArrivals(id: number, airportCode: string, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllFlightsArrivals(id, airportCode, this, options);
     }
 
-    public async Airline_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string) {
-        return await Api.airline.getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode, this);
+    public async Airline_getAllFlightDeparturesAndArrivals(id: number, departureAirportCode: string, arrivalAirportCode: string, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode, this, options);
     }
 
-    public async Airline_getAllScreenshots(id: number) {
-        return await Api.airline.getAllScreenshots(id, this);
+    public async Airline_getAllScreenshots(id: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllScreenshots(id, this, options);
     }
 
     public async Airline_getStats(id: number) {
@@ -164,16 +164,16 @@ export default class FSHubApiClass implements FSHubApi {
         return await Api.airline.pilotSetRank(pilotId, airlineId, data, this);
     }
 
-    public async Airline_getAllRanks(airlineId: number) {
-        return await Api.airline.getAllRanks(airlineId, this);
+    public async Airline_getAllRanks(airlineId: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllRanks(airlineId, this, options);
     }
 
-    public async Airline_getAllRoles(airlineId: number) {
-        return await Api.airline.getAllRoles(airlineId, this);
+    public async Airline_getAllRoles(airlineId: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllRoles(airlineId, this, options);
     }
 
-    public async Airline_getAllRoutes(airlineId: number) {
-        return await Api.airline.getAllRoutes(airlineId, this);
+    public async Airline_getAllRoutes(airlineId: number, options?: FSHubRequestOptions) {
+        return await Api.airline.getAllRoutes(airlineId, this, options);
     }
 
     public async Airline_approveManualPIREP(airlineId: number, flightId: number) {
@@ -188,8 +188,8 @@ export default class FSHubApiClass implements FSHubApi {
         return await Api.flight.getFlightById(id, this);
     }
 
-    public async Flight_getFlightScreenshotsById(id: number) {
-        return await Api.flight.getFlightScreenshotsById(id, this);
+    public async Flight_getFlightScreenshotsById(id: number, options?: FSHubRequestOptions) {
+        return await Api.flight.getFlightScreenshotsById(id, this, options);
     }
 
     public async Flight_getFlights(options?: FSHubRequestOptions) {

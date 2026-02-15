@@ -1,9 +1,9 @@
-import { FSHubApi, FSHubResponse, Screenshot } from "../../types";
+import { FSHubApi, FSHubRequestOptions, FSHubResponse, Screenshot } from "../../types";
 import FSHubApiRequest from "../FSHubApiRequest";
 
-export default async function Airline_getAllScreenshots(id: number, api: FSHubApi): Promise<FSHubResponse<Screenshot[]>> {
+export default async function Airline_getAllScreenshots(id: number, api: FSHubApi, options?: FSHubRequestOptions): Promise<FSHubResponse<Screenshot[]>> {
     try {
-        const response: FSHubResponse<Screenshot[]> = await FSHubApiRequest(`airline/${id}/screenshot`, api);
+        const response: FSHubResponse<Screenshot[]> = await FSHubApiRequest(`airline/${id}/screenshot`, api, options);
 
         return response;
     } catch (error) {

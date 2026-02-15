@@ -4,7 +4,11 @@ import { FSHubRequestOptions, FSHubResponse, FSHubError, FSHubApi } from '../typ
 export async function FSHubApiRequest<T>(url: string, api: FSHubApi, options?: FSHubRequestOptions): Promise<FSHubResponse<T>> {
     let queryParams = '';
     if (options) {
-        queryParams = `?cursor=${options.cursor}&limit=${options.limit}`;
+        const params = new URLSearchParams();
+        if (options.cursor !== undefined) params.set('cursor', String(options.cursor));
+        if (options.limit !== undefined) params.set('limit', String(options.limit));
+        const queryString = params.toString();
+        if (queryString) queryParams = `?${queryString}`;
     }
 
     const response: FSHubResponse<T> =  await api.axios.get(url + queryParams)

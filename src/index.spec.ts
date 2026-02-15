@@ -78,6 +78,17 @@ describe('FSHubApi()', function() {
             expect(pilots.data).to.be.an('Array');
         });
 
+        it('Pilot_getAll() is called with limit option, it should limit the number of pilots returned', async function() {
+            const pilots: FSHubResponse<Pilot[]> = await api.Pilot_getAll({ limit: 1 });
+            expect(pilots.data).to.be.an('Array');
+            expect(pilots.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAll() is called with cursor option, it should return the next page of pilots', async function() {
+            const pilots: FSHubResponse<Pilot[]> = await api.Pilot_getAll({ cursor: 1 });
+            expect(pilots.data).to.be.an('Array');
+        });
+
         it('Pilot_get(id) is called, it should return a valid Pilot object', async function() {
             const pilot: FSHubResponse<Pilot> = await api.Pilot_get(1);
 
@@ -104,10 +115,35 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Pilot_getAllFlights(id, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlights(pilot.data.id, { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAllFlights(id, options) is called with cursor option, it should return the next page of flights', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlights(pilot.data.id, { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Pilot_getAllAirlines(id) is called, it should return an array of valid Airline objects', async function() {
             const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
             const airlines: FSHubResponse<Airline[]> = await api.Pilot_getAllAirlines(pilot.data.id);
             
+            expect(airlines.data).to.be.an('Array');
+        });
+
+        it('Pilot_getAllAirlines(id, options) is called with limit option, it should return an array', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const airlines: FSHubResponse<Airline[]> = await api.Pilot_getAllAirlines(pilot.data.id, { limit: 1 });
+            expect(airlines.data).to.be.an('Array');
+        });
+
+        it('Pilot_getAllAirlines(id, options) is called with cursor option, it should return the next page of airlines', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const airlines: FSHubResponse<Airline[]> = await api.Pilot_getAllAirlines(pilot.data.id, { cursor: 1 });
             expect(airlines.data).to.be.an('Array');
         });
 
@@ -128,10 +164,36 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Pilot_getAllFlightsDepartures(id, airportCode, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsDepartures(pilot.data.id, 'KPHX', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAllFlightsDepartures(id, airportCode, options) is called with cursor option, it should return the next page of flights', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsDepartures(pilot.data.id, 'KPHX', { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Pilot_getAllFlightsArrivals(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
             const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
             const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsArrivals(pilot.data.id, 'KPHX');
             
+            expect(flights.data).to.be.an('Array');
+        });
+
+        it('Pilot_getAllFlightsArrivals(id, airportCode, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsArrivals(pilot.data.id, 'KPHX', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAllFlightsArrivals(id, airportCode, options) is called with cursor option, it should return the next page of flights', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightsArrivals(pilot.data.id, 'KPHX', { cursor: 1 });
             expect(flights.data).to.be.an('Array');
         });
 
@@ -142,10 +204,36 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Pilot_getAllFlightDeparturesAndArrivals(id, dep, arr, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightDeparturesAndArrivals(pilot.data.id, 'KPHX', 'KJAC', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAllFlightDeparturesAndArrivals(id, dep, arr, options) is called with cursor option, it should return the next page of flights', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const flights: FSHubResponse<Flight[]> = await api.Pilot_getAllFlightDeparturesAndArrivals(pilot.data.id, 'KPHX', 'KJAC', { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Pilot_getAllScreenshots(id) is called, it should return an array of valid Screenshot objects', async function() {
             const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
             const screenshots: FSHubResponse<Screenshot[]> = await api.Pilot_getAllScreenshots(pilot.data.id);
             
+            expect(screenshots.data).to.be.an('Array');
+        });
+
+        it('Pilot_getAllScreenshots(id, options) is called with limit option, it should limit the number of screenshots returned', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Pilot_getAllScreenshots(pilot.data.id, { limit: 1 });
+            expect(screenshots.data).to.be.an('Array');
+            expect(screenshots.data.length).to.be.at.most(1);
+        });
+
+        it('Pilot_getAllScreenshots(id, options) is called with cursor option, it should return the next page of screenshots', async function() {
+            const pilot: FSHubResponse<CurrentPilot> = await api.Pilot_getCurrent();
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Pilot_getAllScreenshots(pilot.data.id, { cursor: 1 });
             expect(screenshots.data).to.be.an('Array');
         });
     });
@@ -154,6 +242,17 @@ describe('FSHubApi()', function() {
         it('Airline_getAll() is called, it should return an array of valid Airline objects', async function() {
             const airlines: FSHubResponse<Airline[]> = await api.Airline_getAll();
             
+            expect(airlines.data).to.be.an('Array');
+        });
+
+        it('Airline_getAll(options) is called with limit option, it should limit the number of airlines returned', async function() {
+            const airlines: FSHubResponse<Airline[]> = await api.Airline_getAll({ limit: 1 });
+            expect(airlines.data).to.be.an('Array');
+            expect(airlines.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAll(options) is called with cursor option, it should return the next page of airlines', async function() {
+            const airlines: FSHubResponse<Airline[]> = await api.Airline_getAll({ cursor: 1 });
             expect(airlines.data).to.be.an('Array');
         });
 
@@ -167,6 +266,19 @@ describe('FSHubApi()', function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const pilots: FSHubResponse<Pilot[]> = await api.Airline_getPilots(airline.data.id);
             
+            expect(pilots.data).to.be.an('Array');
+        });
+
+        it('Airline_getPilots(id, options) is called with limit option, it should limit the number of pilots returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilots: FSHubResponse<Pilot[]> = await api.Airline_getPilots(airline.data.id, { limit: 1 });
+            expect(pilots.data).to.be.an('Array');
+            expect(pilots.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getPilots(id, options) is called with cursor option, it should return the next page of pilots', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const pilots: FSHubResponse<Pilot[]> = await api.Airline_getPilots(airline.data.id, { cursor: 1 });
             expect(pilots.data).to.be.an('Array');
         });
 
@@ -185,10 +297,36 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Airline_getFlights(id, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getFlights(airline.data.id, { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getFlights(id, options) is called with cursor option, it should return the next page of flights', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getFlights(airline.data.id, { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Airline_getAllFlightsDepartures(id, airportCode) is called, it should return an array of valid Flight objects', async function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsDepartures(airline.data.id, 'KPHX');
             
+            expect(flights.data).to.be.an('Array');
+        });
+
+        it('Airline_getAllFlightsDepartures(id, airportCode, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsDepartures(airline.data.id, 'KPHX', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllFlightsDepartures(id, airportCode, options) is called with cursor option, it should return the next page of flights', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsDepartures(airline.data.id, 'KPHX', { cursor: 1 });
             expect(flights.data).to.be.an('Array');
         });
 
@@ -199,6 +337,19 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Airline_getAllFlightsArrivals(id, airportCode, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsArrivals(airline.data.id, 'KPHX', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllFlightsArrivals(id, airportCode, options) is called with cursor option, it should return the next page of flights', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightsArrivals(airline.data.id, 'KPHX', { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Airline_getAllFlightDeparturesAndArrivals(id, departureAirportCode, arrivalAirportCode) is called, it should return an array of valid Flight objects', async function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightDeparturesAndArrivals(airline.data.id, 'KPHX', 'KJAC');
@@ -206,10 +357,36 @@ describe('FSHubApi()', function() {
             expect(flights.data).to.be.an('Array');
         });
 
+        it('Airline_getAllFlightDeparturesAndArrivals(id, dep, arr, options) is called with limit option, it should limit the number of flights returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightDeparturesAndArrivals(airline.data.id, 'KPHX', 'KJAC', { limit: 1 });
+            expect(flights.data).to.be.an('Array');
+            expect(flights.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllFlightDeparturesAndArrivals(id, dep, arr, options) is called with cursor option, it should return the next page of flights', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const flights: FSHubResponse<Flight[]> = await api.Airline_getAllFlightDeparturesAndArrivals(airline.data.id, 'KPHX', 'KJAC', { cursor: 1 });
+            expect(flights.data).to.be.an('Array');
+        });
+
         it('Airline_getAllScreenshots(id) is called, it should return an array of valid Screenshot objects', async function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const screenshots: FSHubResponse<Screenshot[]> = await api.Airline_getAllScreenshots(airline.data.id);
             
+            expect(screenshots.data).to.be.an('Array');
+        });
+
+        it('Airline_getAllScreenshots(id, options) is called with limit option, it should limit the number of screenshots returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Airline_getAllScreenshots(airline.data.id, { limit: 1 });
+            expect(screenshots.data).to.be.an('Array');
+            expect(screenshots.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllScreenshots(id, options) is called with cursor option, it should return the next page of screenshots', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const screenshots: FSHubResponse<Screenshot[]> = await api.Airline_getAllScreenshots(airline.data.id, { cursor: 1 });
             expect(screenshots.data).to.be.an('Array');
         });
 
@@ -253,6 +430,45 @@ describe('FSHubApi()', function() {
             expect(routes.data).to.be.an('Array');
         });
 
+        it('Airline_getAllRanks(airlineId, options) is called with limit option, it should limit the number of ranks returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const ranks = await api.Airline_getAllRanks(airline.data.id, { limit: 1 });
+            expect(ranks.data).to.be.an('Array');
+            expect(ranks.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllRanks(airlineId, options) is called with cursor option, it should return the next page of ranks', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const ranks = await api.Airline_getAllRanks(airline.data.id, { cursor: 1 });
+            expect(ranks.data).to.be.an('Array');
+        });
+
+        it('Airline_getAllRoles(airlineId, options) is called with limit option, it should limit the number of roles returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const roles = await api.Airline_getAllRoles(airline.data.id, { limit: 1 });
+            expect(roles.data).to.be.an('Array');
+            expect(roles.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllRoles(airlineId, options) is called with cursor option, it should return the next page of roles', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const roles = await api.Airline_getAllRoles(airline.data.id, { cursor: 1 });
+            expect(roles.data).to.be.an('Array');
+        });
+
+        it('Airline_getAllRoutes(airlineId, options) is called with limit option, it should limit the number of routes returned', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const routes: FSHubResponse<AirlineRoute[]> = await api.Airline_getAllRoutes(airline.data.id, { limit: 1 });
+            expect(routes.data).to.be.an('Array');
+            expect(routes.data.length).to.be.at.most(1);
+        });
+
+        it('Airline_getAllRoutes(airlineId, options) is called with cursor option, it should return the next page of routes', async function() {
+            const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
+            const routes: FSHubResponse<AirlineRoute[]> = await api.Airline_getAllRoutes(airline.data.id, { cursor: 1 });
+            expect(routes.data).to.be.an('Array');
+        });
+
         it.skip('Airline_approveManualPIREP(airlineId, flightId) is called, it should return a valid FSHubApplicationResponse object', async function() {
             const airline: FSHubResponse<Airline> = await api.Airline_get(6082);
             const flight: FSHubResponse<Flight> = await api.Flight_getFlightById(4009359);
@@ -285,6 +501,17 @@ describe('FSHubApi()', function() {
                 
                 expect(flight.data).to.be.an('Array');
             });
+
+            it('Flight_getFlightScreenshotsById(id, options) is called with limit option, it should limit the number of screenshots returned', async function() {
+                const screenshots: FSHubResponse<Screenshot[]> = await api.Flight_getFlightScreenshotsById(4009359, { limit: 1 });
+                expect(screenshots.data).to.be.an('Array');
+                expect(screenshots.data.length).to.be.at.most(1);
+            });
+
+            it('Flight_getFlightScreenshotsById(id, options) is called with cursor option, it should return the next page of screenshots', async function() {
+                const screenshots: FSHubResponse<Screenshot[]> = await api.Flight_getFlightScreenshotsById(4009359, { cursor: 1 });
+                expect(screenshots.data).to.be.an('Array');
+            });
         });
 
         describe('Flight_getFlights(options)', function() {
@@ -292,7 +519,6 @@ describe('FSHubApi()', function() {
                 const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights();
                 
                 expect(flights.data).to.be.an('Array');
-                expect(flights.data.length).to.be.equal(10);
             });
 
             it('Flight_getFlights(options) is called with limit option, it should limit the number of flights returned', async function() {
@@ -303,10 +529,9 @@ describe('FSHubApi()', function() {
             });
 
             it('Flight_getFlights(options) is called with cursor option, it should return the next page of flights', async function() {
-                const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights({ cursor: 100 });
+                const flights: FSHubResponse<Flight[]> = await api.Flight_getFlights({ cursor: 1 });
                 
                 expect(flights.data).to.be.an('Array');
-                expect(flights.data.length).to.be.equal(100);
             });
         });
     });

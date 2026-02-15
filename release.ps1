@@ -13,3 +13,4 @@ git commit -m "Release v$version"
 git tag -a "v$version" -m "Release v$version"
 git push origin master
 git push origin tag "v$version"
+npm publish
